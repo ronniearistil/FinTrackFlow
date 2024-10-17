@@ -1,12 +1,8 @@
-// ProjectForm.jsx
-import React, { useContext } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { ProjectContext } from '../ProjectContext'; // Use context
 
-const ProjectForm = () => {
-  const { addProject } = useContext(ProjectContext);
-
+const ProjectForm = ({ addProject }) => {
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -15,10 +11,18 @@ const ProjectForm = () => {
       status: '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().required('Project name is required').min(3, 'Must be at least 3 characters'),
-      profit: Yup.number().required('Profit is required').positive('Profit must be greater than zero'),
-      cost: Yup.number().required('Cost is required').positive('Cost must be greater than zero'),
-      status: Yup.string().required('Status is required').oneOf(['In Progress', 'Completed', 'At Risk']),
+      name: Yup.string()
+        .required('Project name is required')
+        .min(3, 'Must be at least 3 characters'),
+      profit: Yup.number()
+        .required('Profit is required')
+        .positive('Profit must be greater than zero'),
+      cost: Yup.number()
+        .required('Cost is required')
+        .positive('Cost must be greater than zero'),
+      status: Yup.string()
+        .required('Status is required')
+        .oneOf(['In Progress', 'Completed', 'At Risk']),
     }),
     onSubmit: (values, { resetForm }) => {
       addProject(values);
@@ -36,7 +40,9 @@ const ProjectForm = () => {
           value={formik.values.name}
           onChange={formik.handleChange}
         />
-        {formik.touched.name && formik.errors.name ? <div className="error">{formik.errors.name}</div> : null}
+        {formik.errors.name && formik.touched.name ? (
+          <div className="error">{formik.errors.name}</div>
+        ) : null}
       </div>
 
       <div>
@@ -47,7 +53,9 @@ const ProjectForm = () => {
           value={formik.values.profit}
           onChange={formik.handleChange}
         />
-        {formik.touched.profit && formik.errors.profit ? <div className="error">{formik.errors.profit}</div> : null}
+        {formik.errors.profit && formik.touched.profit ? (
+          <div className="error">{formik.errors.profit}</div>
+        ) : null}
       </div>
 
       <div>
@@ -58,7 +66,9 @@ const ProjectForm = () => {
           value={formik.values.cost}
           onChange={formik.handleChange}
         />
-        {formik.touched.cost && formik.errors.cost ? <div className="error">{formik.errors.cost}</div> : null}
+        {formik.errors.cost && formik.touched.cost ? (
+          <div className="error">{formik.errors.cost}</div>
+        ) : null}
       </div>
 
       <div>
@@ -73,7 +83,9 @@ const ProjectForm = () => {
           <option value="Completed">Completed</option>
           <option value="At Risk">At Risk</option>
         </select>
-        {formik.touched.status && formik.errors.status ? <div className="error">{formik.errors.status}</div> : null}
+        {formik.errors.status && formik.touched.status ? (
+          <div className="error">{formik.errors.status}</div>
+        ) : null}
       </div>
 
       <button type="submit">Add Project</button>

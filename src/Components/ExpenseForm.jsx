@@ -1,25 +1,31 @@
-// ExpenseForm.jsx
-import React, { useContext } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { ProjectContext } from '../ProjectContext'; // Use context
 
-const ExpenseForm = () => {
-  const { addExpense } = useContext(ProjectContext);
-
+const ProjectForm = ({ addProject }) => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      amount: '',
-      projectId: '',
+      profit: '',
+      cost: '',
+      status: '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().required('Expense name is required'),
-      amount: Yup.number().required('Amount is required').positive('Amount must be greater than zero'),
-      projectId: Yup.number().required('Project ID is required'),
+      name: Yup.string()
+        .required('Project name is required')
+        .min(3, 'Must be at least 3 characters'),
+      profit: Yup.number()
+        .required('Profit is required')
+        .positive('Profit must be greater than zero'),
+      cost: Yup.number()
+        .required('Cost is required')
+        .positive('Cost must be greater than zero'),
+      status: Yup.string()
+        .required('Status is required')
+        .oneOf(['In Progress', 'Completed', 'At Risk']),
     }),
     onSubmit: (values, { resetForm }) => {
-      addExpense(values);
+      addProject(values);
       resetForm();
     },
   });
@@ -27,41 +33,64 @@ const ExpenseForm = () => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div>
-        <label>Expense Name</label>
+        <label>Project Name</label>
         <input
           type="text"
           name="name"
           value={formik.values.name}
           onChange={formik.handleChange}
         />
-        {formik.touched.name && formik.errors.name ? <div className="error">{formik.errors.name}</div> : null}
+        {formik.errors.name && formik.touched.name ? (
+          <div className="error">{formik.errors.name}</div>
+        ) : null}
       </div>
 
       <div>
-        <label>Amount</label>
+        <label>Profit</label>
         <input
           type="number"
-          name="amount"
-          value={formik.values.amount}
+          name="profit"
+          value={formik.values.profit}
           onChange={formik.handleChange}
         />
-        {formik.touched.amount && formik.errors.amount ? <div className="error">{formik.errors.amount}</div> : null}
+        {formik.errors.profit && formik.touched.profit ? (
+          <div className="error">{formik.errors.profit}</div>
+        ) : null}
       </div>
 
       <div>
-        <label>Project ID</label>
+        <label>Cost</label>
         <input
           type="number"
-          name="projectId"
-          value={formik.values.projectId}
+          name="cost"
+          value={formik.values.cost}
           onChange={formik.handleChange}
         />
-        {formik.touched.projectId && formik.errors.projectId ? <div className="error">{formik.errors.projectId}</div> : null}
+        {formik.errors.cost && formik.touched.cost ? (
+          <div className="error">{formik.errors.cost}</div>
+        ) : null}
       </div>
 
-      <button type="submit">Add Expense</button>
+      <div>
+        <label>Status</label>
+        <select
+          name="status"
+          value={formik.values.status}
+          onChange={formik.handleChange}
+        >
+          <option value="">Select Status</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="At Risk">At Risk</option>
+        </select>
+        {formik.errors.status && formik.touched.status ? (
+          <div className="error">{formik.errors.status}</div>
+        ) : null}
+      </div>
+
+      <button type="submit">Add Project</button>
     </form>
   );
 };
 
-export default ExpenseForm;
+export default ProjectForm;
