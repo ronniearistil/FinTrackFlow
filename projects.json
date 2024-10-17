@@ -1,0 +1,142 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Project Alpha",
+      "profit": 10000,
+      "cost": 5000,
+      "status": "In Progress"
+    },
+    {
+      "id": 2,
+      "name": "Project Beta",
+      "profit": 15000,
+      "cost": 7000,
+      "status": "Completed"
+    },
+    {
+      "id": 3,
+      "name": "Project Gamma",
+      "profit": 8000,
+      "cost": 4000,
+      "status": "At Risk"
+    },
+    {
+      "id": 4,
+      "name": "Project Delta",
+      "profit": 12000,
+      "cost": 6000,
+      "status": "In Progress"
+    },
+    {
+      "id": 5,
+      "name": "Project Epsilon",
+      "profit": 20000,
+      "cost": 9000,
+      "status": "Completed"
+    },
+    {
+      "id": 6,
+      "name": "Project Zeta",
+      "profit": 5000,
+      "cost": 3000,
+      "status": "In Progress"
+    },
+    {
+      "id": 7,
+      "name": "Project Eta",
+      "profit": 25000,
+      "cost": 10000,
+      "status": "Completed"
+    },
+    {
+      "id": 8,
+      "name": "Project Theta",
+      "profit": 18000,
+      "cost": 7500,
+      "status": "At Risk"
+    },
+    {
+      "id": 9,
+      "name": "Project Iota",
+      "profit": 9000,
+      "cost": 4500,
+      "status": "In Progress"
+    },
+    {
+      "id": 10,
+      "name": "Project Kappa",
+      "profit": 22000,
+      "cost": 9500,
+      "status": "Completed"
+    }
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "name": "Design Costs",
+      "amount": 1200,
+      "projectId": 1
+    },
+    {
+      "id": 2,
+      "name": "Marketing",
+      "amount": 2400,
+      "projectId": 1
+    },
+    {
+      "id": 3,
+      "name": "Tech Tools",
+      "amount": 1600,
+      "projectId": 2
+    },
+    {
+      "id": 4,
+      "name": "Consulting Fees",
+      "amount": 900,
+      "projectId": 3
+    },
+    {
+      "id": 5,
+      "name": "Legal Services",
+      "amount": 2200,
+      "projectId": 4
+    },
+    {
+      "id": 6,
+      "name": "Training",
+      "amount": 1300,
+      "projectId": 5
+    },
+    {
+      "id": 7,
+      "name": "Overhead",
+      "amount": 3000,
+      "projectId": 6
+    },
+    {
+      "id": 8,
+      "name": "Supplies",
+      "amount": 850,
+      "projectId": 7
+    },
+    {
+      "id": 9,
+      "name": "Equipment Rental",
+      "amount": 1900,
+      "projectId": 8
+    },
+    {
+      "id": 10,
+      "name": "Consultation Fees",
+      "amount": 2200,
+      "projectId": 9
+    },
+    {
+      "id": 11,
+      "name": "Software Licensing",
+      "amount": 2600,
+      "projectId": 10
+    }
+  ]
+}
