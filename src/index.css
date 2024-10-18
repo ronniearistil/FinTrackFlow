@@ -115,23 +115,23 @@ button:hover {
 .navbar {
   display: flex;
   justify-content: center;
-  background-color: #040404d4;
-  padding: 10px 0;
+  background-color: #2a9d8f; /* Updated background color */
+  padding: 10px 0; /* Adjust padding if needed */
   width: 100%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar a {
   text-decoration: none;
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 500;
+  color: #ffffff; /* Text color */
+  font-size: 2.5rem; /* Increased font size */
+  font-weight: bolder;
   padding: 10px 20px;
   transition: background-color 0.3s ease-in-out;
 }
 
 .navbar a:hover {
-  background-color: #2a9d8f;
+  background-color: #21867a; /* Adjust hover color */
   border-radius: 5px;
 }
 
