@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header>
       <h1>FinTrackPro</h1>
-  <h3>A Seamless Project Financial Forecasting | Budgeting and Oversight Hub</h3>
+  <h3>A Seamless Project Forecasting, Budgeting, and Expense Management Hub</h3>
     </header>
   );
 };
