@@ -1,7 +1,15 @@
+/* Reset Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 /* General Styling */
 body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Roboto', Arial, sans-serif;
   background-color: #f0f4f8;
   color: #333;
 }
@@ -10,15 +18,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
   justify-content: flex-start;
   min-height: 100vh;
+  width: 100%;
 }
 
 /* Header Styling */
 header {
-  background-color: #2a9d8f;
+  background-color: #188f87;
+  font-weight: bolder;
   color: white;
-  padding: 20px;
+  padding: 30px;
   text-align: center;
   width: 100%;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -46,7 +57,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Centers the project cards */
-  width: 80%;
+  width: 100%;
   margin-top: 30px;
 }
 
@@ -121,10 +132,10 @@ button:hover {
 
 /* Expense List Styling */
 .expense-dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 70px;
-  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
   margin-top: 30px;
 }
 
@@ -212,25 +223,46 @@ button:hover {
   background-color: #21867a;
 }
 
-/* Footer Styling */
+/* Footer Styling - Pinned at the Bottom */
 .footer {
   background-color: #188f87;
-  color: #ffffff;
+  color: white;
   padding: 5px;
   text-align: center;
   width: 100%;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
-  margin-top: auto;
+  margin-top: auto; /* Pushes footer to the bottom */
 }
 
 .footer p {
   margin: 5px 0;
   font-size: 1rem;
-  color: #ffffff;
 }
 
-.error {
-  color: #e63946;
-  font-size: 0.9rem;
-  margin-top: 5px;
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  .dashboard {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .project-card,
+  .expense-card {
+    width: 90%;
+  }
 }
