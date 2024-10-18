@@ -1,7 +1,7 @@
 // ProjectsContainer.jsx
 import React, { useContext } from 'react';
-import { ProjectContext } from '../ProjectContext';
-import Dashboard from './Dashboard';
+import { ProjectContext } from './ProjectContext';
+import ProjectsDashboard from './ProjectsDashboard';
 import ProjectForm from './ProjectForm';
 
 const ProjectsContainer = () => {
@@ -10,7 +10,7 @@ const ProjectsContainer = () => {
   return (
     <div>
       <ProjectForm addProject={addProject} />
-      <Dashboard projects={projects} />
+      <ProjectsDashboard projects={projects} />
     </div>
   );
 };

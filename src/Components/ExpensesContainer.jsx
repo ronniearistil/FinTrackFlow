@@ -1,6 +1,6 @@
 // ExpensesContainer.jsx
 import React, { useContext } from 'react';
-import { ProjectContext } from '../ProjectContext';
+import { ProjectContext } from './ProjectContext';
 import ExpenseDashboard from './ExpenseDashboard';
 import ExpenseForm from './ExpenseForm';
 
