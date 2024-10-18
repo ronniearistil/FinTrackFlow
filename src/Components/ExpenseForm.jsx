@@ -1,29 +1,25 @@
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { ProjectContext } from './ProjectContext'; // Ensure the import path is correct
+import { ProjectContext } from './ProjectContext';
 
 const ExpenseForm = () => {
-  const { addExpense } = useContext(ProjectContext); // Get the addExpense function from context
+  const { projects, addExpense } = useContext(ProjectContext); // Access the projects and addExpense from context
 
   const formik = useFormik({
     initialValues: {
       name: '',
       amount: '',
-      projectId: '',
+      projectId: '', // New field for project ID
     },
     validationSchema: Yup.object({
-      name: Yup.string()
-        .required('Expense name is required')
-        .min(3, 'Must be at least 3 characters'),
-      amount: Yup.number()
-        .required('Amount is required')
-        .positive('Amount must be greater than zero'),
-      projectId: Yup.string()
-        .required('Project ID is required'),
+      name: Yup.string().required('Expense name is required'),
+      amount: Yup.number().required('Amount is required').positive('Amount must be greater than zero'),
+      projectId: Yup.string().required('Project ID is required'), // Validation for project ID
     }),
     onSubmit: (values, { resetForm }) => {
-      addExpense(values); // Call the addExpense function from context
+      console.log("Submitting expense:", values); // Log the expense values
+      addExpense(values); // Call addExpense from context
       resetForm();
     },
   });
@@ -37,7 +33,6 @@ const ExpenseForm = () => {
           name="name"
           value={formik.values.name}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
         />
         {formik.errors.name && formik.touched.name ? (
           <div className="error">{formik.errors.name}</div>
@@ -51,7 +46,6 @@ const ExpenseForm = () => {
           name="amount"
           value={formik.values.amount}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
         />
         {formik.errors.amount && formik.touched.amount ? (
           <div className="error">{formik.errors.amount}</div>
@@ -59,14 +53,19 @@ const ExpenseForm = () => {
       </div>
 
       <div>
-        <label>Project ID</label>
-        <input
-          type="text"
+        <label>Project</label>
+        <select
           name="projectId"
           value={formik.values.projectId}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
+        >
+          <option value="">Select a project</option>
+          {projects.map((project) => (
+            <option key={project.id} value={project.id}>
+              {project.name}
+            </option>
+          ))}
+        </select>
         {formik.errors.projectId && formik.touched.projectId ? (
           <div className="error">{formik.errors.projectId}</div>
         ) : null}
@@ -78,4 +77,5 @@ const ExpenseForm = () => {
 };
 
 export default ExpenseForm;
+
 
