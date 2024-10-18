@@ -1,4 +1,3 @@
-// ProjectContext.js
 import React, { createContext, useState, useEffect } from 'react';
 
 export const ProjectContext = createContext();
@@ -21,7 +20,18 @@ export const ProjectProvider = ({ children }) => {
 
   // CRUD operations for projects
   const addProject = (newProject) => {
-    setProjects((prevProjects) => [...prevProjects, newProject]);
+    fetch('http://localhost:5001/projects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newProject),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setProjects((prevProjects) => [...prevProjects, data]);
+      })
+      .catch((error) => console.error('Error adding project:', error));
   };
 
   const updateProject = (updatedProject) => {
@@ -40,7 +50,18 @@ export const ProjectProvider = ({ children }) => {
 
   // CRUD operations for expenses
   const addExpense = (newExpense) => {
-    setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+    fetch('http://localhost:5001/expenses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newExpense),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setExpenses((prevExpenses) => [...prevExpenses, data]);
+      })
+      .catch((error) => console.error('Error adding expense:', error));
   };
 
   const updateExpense = (updatedExpense) => {
@@ -74,4 +95,3 @@ export const ProjectProvider = ({ children }) => {
     </ProjectContext.Provider>
   );
 };
-

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { ProjectContext } from './ProjectContext'; // Ensure the import path is correct
 
-const ProjectForm = ({ addProject }) => {
+const ProjectForm = () => {
+  const { addProject } = useContext(ProjectContext); // Get the addProject function from context
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -25,7 +28,7 @@ const ProjectForm = ({ addProject }) => {
         .oneOf(['In Progress', 'Completed', 'At Risk']),
     }),
     onSubmit: (values, { resetForm }) => {
-      addProject(values);
+      addProject(values); // Call the addProject function from context
       resetForm();
     },
   });
@@ -98,6 +101,7 @@ const ProjectForm = ({ addProject }) => {
 };
 
 export default ProjectForm;
+
 
 
 
