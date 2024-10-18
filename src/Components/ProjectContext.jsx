@@ -4,7 +4,7 @@ export const ProjectContext = createContext();
 
 export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
-  const [expenses, setExpenses] = useState([]); // Initialized as empty array
+  const [expenses, setExpenses] = useState([]); 
 
   useEffect(() => {
     fetch('http://localhost:5001/projects')

@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 /* General Styling */
 body {
   display: flex;
@@ -42,6 +43,10 @@ h1 {
   letter-spacing: 1.5px;
 }
 
+h3 {
+  margin: 0;
+}
+
 /* Section Titles */
 h2 {
   margin-top: 20px;
@@ -49,7 +54,7 @@ h2 {
   font-weight: bolder;
   color: #188f87;
   text-align: center;
-  width: 12%; /* Ensures full width alignment */
+  width: 100%; /* Ensures full width alignment */
 }
 
 /* Dashboard */
@@ -103,7 +108,7 @@ button {
 }
 
 button:hover {
-  background-color: #188f87;
+  background-color: #1bc0ad; /* Slightly lighter color on hover */
 }
 
 /* NavBar Styling */
@@ -205,22 +210,6 @@ select:focus {
 label {
   font-size: 1.2rem;
   color: #264653; /* Darker label color for clarity */
-}
-
-button {
-  background-color: #2a9d8f;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 15px;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #21867a;
 }
 
 /* Footer Styling - Pinned at the Bottom */

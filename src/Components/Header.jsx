@@ -1,10 +1,11 @@
 import React from 'react';
+import { Typography } from '@mui/material'; // Import MUI Typography
 
 const Header = () => {
   return (
     <header>
-      <h1>FinTrackPro</h1>
-  <h3>A Seamless Project Forecasting, Budgeting, and Expense Management Hub</h3>
+      <Typography variant="h1">FinTrackPro</Typography>
+      <Typography variant="h5">A Seamless Project Forecasting, Budgeting, and Expense Management Hub</Typography>
     </header>
   );
 };
