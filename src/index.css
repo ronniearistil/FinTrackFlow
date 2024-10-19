@@ -28,7 +28,7 @@ body {
 /* Header Styling */
 header {
   background-color: #188f87;
-  font-weight: bolder;
+  font-weight: bold;
   color: white;
   padding: 30px;
   text-align: center;
@@ -114,18 +114,27 @@ button:hover {
 /* NavBar Styling */
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Space between links and search bar */
+  align-items: center; /* Vertically center the items */
   background-color: #2a9d8f; /* Updated background color */
-  padding: 10px 0; /* Adjust padding if needed */
+  padding: 10px 20px; /* Adjust padding if needed */
   width: 100%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Centering the search bar */
+.navbar .search-bar {
+  flex: 1; /* Take up available space */
+  display: flex;
+  justify-content: center; /* Center search bar horizontally */
+  margin: 0 20px; /* Space around the search bar */
 }
 
 .navbar a {
   text-decoration: none;
   color: #ffffff; /* Text color */
-  font-size: 2.5rem; /* Increased font size */
-  font-weight: bolder;
+  font-size: 1.5rem; /* Increased font size */
+  font-weight: bold; /* Bold text */
   padding: 10px 20px;
   transition: background-color 0.3s ease-in-out;
 }
@@ -133,6 +142,20 @@ button:hover {
 .navbar a:hover {
   background-color: #21867a; /* Adjust hover color */
   border-radius: 5px;
+}
+
+/* Search Bar Styling */
+.navbar input[type="text"] {
+  padding: 15px; /* Padding for the search input */
+  border: 5px solid #ddd; /* Border color */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 1rem; /* Standard font size */
+  width: 300px; /* Fixed width for the search input */
+}
+
+.navbar input[type="text"]:focus {
+  border-color: #2a9d8f; /* Focus color to match the theme */
+  outline: none; /* Remove default outline */
 }
 
 /* Expense List Styling */
