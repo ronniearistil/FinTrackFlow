@@ -8,7 +8,8 @@ import ProjectForm from './ProjectForm.jsx';
 import ExpenseForm from './ExpenseForm.jsx';
 import Footer from './Footer.jsx';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { CssBaseline } from '@mui/material';
+import { ThemeProvider, CssBaseline } from '@mui/material'; 
+import theme from '../theme';
 
 const App = () => {
   return (
