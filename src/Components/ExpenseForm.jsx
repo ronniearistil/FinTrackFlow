@@ -13,8 +13,12 @@ const ExpenseForm = () => {
   const formik = useFormik({
     initialValues: { name: '', amount: '', projectId: '' },
     validationSchema: Yup.object({
-      name: Yup.string().required('Expense name is required'),
-      amount: Yup.number().positive('Amount must be positive').required('Amount is required'),
+      name: Yup.string()
+        .min(3, 'Expense name must be at least 3 characters long')
+        .required('Expense name is required'),
+      amount: Yup.number()
+        .positive('Amount must be greater than zero')
+        .required('Amount is required'),
       projectId: Yup.string().required('Project ID is required'),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -41,6 +45,7 @@ const ExpenseForm = () => {
 };
 
 export default ExpenseForm;
+
 
 
 
