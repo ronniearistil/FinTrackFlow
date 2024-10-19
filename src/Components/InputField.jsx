@@ -18,3 +18,4 @@ const InputField = ({ formik, name, label, type = 'text' }) => (
 );
 
 export default InputField;
+
