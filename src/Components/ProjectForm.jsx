@@ -12,9 +12,15 @@ const ProjectForm = () => {
   const formik = useFormik({
     initialValues: { name: '', profit: '', cost: '', status: '' },
     validationSchema: Yup.object({
-      name: Yup.string().required('Project name is required'),
-      profit: Yup.number().positive('Profit must be positive').required('Profit is required'),
-      cost: Yup.number().positive('Cost must be positive').required('Cost is required'),
+      name: Yup.string()
+        .min(3, 'Project name must be at least 3 characters long')
+        .required('Project name is required'),
+      profit: Yup.number()
+        .positive('Profit must be greater than zero')
+        .required('Profit is required'),
+      cost: Yup.number()
+        .positive('Cost must be greater than zero')
+        .required('Cost is required'),
       status: Yup.string().required('Status is required'),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -42,6 +48,7 @@ const ProjectForm = () => {
 };
 
 export default ProjectForm;
+
 
 
 
