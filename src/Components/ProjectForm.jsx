@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Button, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { ProjectContext } from './ProjectContext'; // Ensure the import path is correct
 
-const ProjectForm = ({ addProject }) => {
+const ProjectForm = () => {
+  const { addProject } = useContext(ProjectContext); // Get the addProject function from context
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -25,7 +29,7 @@ const ProjectForm = ({ addProject }) => {
         .oneOf(['In Progress', 'Completed', 'At Risk']),
     }),
     onSubmit: (values, { resetForm }) => {
-      addProject(values);
+      addProject(values); // Call the addProject function from context
       resetForm();
     },
   });
@@ -39,6 +43,7 @@ const ProjectForm = ({ addProject }) => {
           name="name"
           value={formik.values.name}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur} // Add blur handling
         />
         {formik.errors.name && formik.touched.name ? (
           <div className="error">{formik.errors.name}</div>
@@ -52,6 +57,7 @@ const ProjectForm = ({ addProject }) => {
           name="profit"
           value={formik.values.profit}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
         {formik.errors.profit && formik.touched.profit ? (
           <div className="error">{formik.errors.profit}</div>
@@ -65,6 +71,7 @@ const ProjectForm = ({ addProject }) => {
           name="cost"
           value={formik.values.cost}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
         {formik.errors.cost && formik.touched.cost ? (
           <div className="error">{formik.errors.cost}</div>
@@ -77,6 +84,7 @@ const ProjectForm = ({ addProject }) => {
           name="status"
           value={formik.values.status}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         >
           <option value="">Select Status</option>
           <option value="In Progress">In Progress</option>
@@ -94,5 +102,7 @@ const ProjectForm = ({ addProject }) => {
 };
 
 export default ProjectForm;
+
+
 
 

@@ -1,31 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Button, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { ProjectContext } from './ProjectContext';
 
-const ProjectForm = ({ addProject }) => {
+const ExpenseForm = () => {
+  const { projects, addExpense } = useContext(ProjectContext); // Access the projects and addExpense from context
+
   const formik = useFormik({
     initialValues: {
       name: '',
-      profit: '',
-      cost: '',
-      status: '',
+      amount: '',
+      projectId: '', // New field for project ID
     },
     validationSchema: Yup.object({
-      name: Yup.string()
-        .required('Project name is required')
-        .min(3, 'Must be at least 3 characters'),
-      profit: Yup.number()
-        .required('Profit is required')
-        .positive('Profit must be greater than zero'),
-      cost: Yup.number()
-        .required('Cost is required')
-        .positive('Cost must be greater than zero'),
-      status: Yup.string()
-        .required('Status is required')
-        .oneOf(['In Progress', 'Completed', 'At Risk']),
+      name: Yup.string().required('Expense name is required'),
+      amount: Yup.number().required('Amount is required').positive('Amount must be greater than zero'),
+      projectId: Yup.string().required('Project ID is required'), // Validation for project ID
     }),
     onSubmit: (values, { resetForm }) => {
-      addProject(values);
+      console.log("Submitting expense:", values); // Log the expense values
+      addExpense(values); // Call addExpense from context
       resetForm();
     },
   });
@@ -33,7 +28,7 @@ const ProjectForm = ({ addProject }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div>
-        <label>Project Name</label>
+        <label>Expense Name</label>
         <input
           type="text"
           name="name"
@@ -46,51 +41,42 @@ const ProjectForm = ({ addProject }) => {
       </div>
 
       <div>
-        <label>Profit</label>
+        <label>Amount</label>
         <input
           type="number"
-          name="profit"
-          value={formik.values.profit}
+          name="amount"
+          value={formik.values.amount}
           onChange={formik.handleChange}
         />
-        {formik.errors.profit && formik.touched.profit ? (
-          <div className="error">{formik.errors.profit}</div>
+        {formik.errors.amount && formik.touched.amount ? (
+          <div className="error">{formik.errors.amount}</div>
         ) : null}
       </div>
 
       <div>
-        <label>Cost</label>
-        <input
-          type="number"
-          name="cost"
-          value={formik.values.cost}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.cost && formik.touched.cost ? (
-          <div className="error">{formik.errors.cost}</div>
-        ) : null}
-      </div>
-
-      <div>
-        <label>Status</label>
+        <label>Project</label>
         <select
-          name="status"
-          value={formik.values.status}
+          name="projectId"
+          value={formik.values.projectId}
           onChange={formik.handleChange}
         >
-          <option value="">Select Status</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Completed">Completed</option>
-          <option value="At Risk">At Risk</option>
+          <option value="">Select a project</option>
+          {projects.map((project) => (
+            <option key={project.id} value={project.id}>
+              {project.name}
+            </option>
+          ))}
         </select>
-        {formik.errors.status && formik.touched.status ? (
-          <div className="error">{formik.errors.status}</div>
+        {formik.errors.projectId && formik.touched.projectId ? (
+          <div className="error">{formik.errors.projectId}</div>
         ) : null}
       </div>
 
-      <button type="submit">Add Project</button>
+      <button type="submit">Add Expense</button>
     </form>
   );
 };
 
-export default ProjectForm;
+export default ExpenseForm;
+
+
