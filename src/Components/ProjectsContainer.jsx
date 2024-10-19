@@ -1,18 +1,14 @@
 // ProjectsContainer.jsx
-import React, { useContext } from 'react';
-import { ProjectContext } from './ProjectContext';
-import ProjectsDashboard from './ProjectsDashboard';
-import ProjectForm from './ProjectForm';
+import React from 'react';
+import ProjectsDashboard from '../views/ProjectsDashboard';
+import ProjectForm from '../forms/ProjectForm';
 
-const ProjectsContainer = () => {
-  const { projects, addProject } = useContext(ProjectContext);
-
-  return (
-    <div>
-      <ProjectForm addProject={addProject} />
-      <ProjectsDashboard projects={projects} />
-    </div>
-  );
-};
+const ProjectsContainer = () => (
+  <div>
+    <ProjectForm />
+    <ProjectsDashboard />
+  </div>
+);
 
 export default ProjectsContainer;
+
