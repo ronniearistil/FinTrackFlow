@@ -1,7 +1,6 @@
 // src/Components/ExpensesContainer.jsx
 import React, { useContext, useState, useEffect } from 'react';
 import { ProjectContext } from './ProjectContext';
-import ExpenseForm from './ExpenseForm';
 import ExpenseCard from './ExpenseCard';
 
 const ExpensesContainer = ({ searchTerm }) => {
@@ -18,14 +17,13 @@ const ExpensesContainer = ({ searchTerm }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <ExpenseForm /> {/* Form always stays at the top */}
       <div className="expense-dashboard" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>
         {filteredExpenses.length > 0 ? (
           filteredExpenses.map((expense) => (
             <ExpenseCard key={expense.id} expense={expense} />
           ))
         ) : (
-          <h3>No matching expenses found</h3> // Message when no match is found
+          <h3>No matching expenses found</h3>
         )}
       </div>
     </div>
