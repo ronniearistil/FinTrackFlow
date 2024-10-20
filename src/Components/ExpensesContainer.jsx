@@ -1,35 +1,26 @@
-//ExpensesContainer.jsx
-import React, { useContext, useState, useEffect } from 'react';
-import { ProjectContext } from './ProjectContext';
+// src/Components/ExpensesContainer.jsx
+import React from 'react';
+import { useProjects } from './ProjectContext';
 import ExpenseCard from './ExpenseCard';
 
-const ExpensesContainer = ({ searchTerm }) => {
-  const { expenses } = useContext(ProjectContext);
-  const [filteredExpenses, setFilteredExpenses] = useState(expenses);
+const ExpensesContainer = () => {
+  const { expenses } = useProjects();
 
-  useEffect(() => {
-    const filtered = expenses.filter((expense) =>
-      expense.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      expense.projectId.toString().includes(searchTerm)
-    );
-    setFilteredExpenses(filtered);
-  }, [expenses, searchTerm]);
+  // Check if expenses is undefined or empty
+  if (!expenses || expenses.length === 0) {
+    return <p>No expenses available.</p>;
+  }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div className="expense-dashboard" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>
-        {filteredExpenses.length > 0 ? (
-          filteredExpenses.map((expense) => (
-            <ExpenseCard key={expense.id} expense={expense} />
-          ))
-        ) : (
-          <h3>No matching expenses found</h3>
-        )}
-      </div>
+    <div className="expense-dashboard">
+      {expenses.map((expense) => (
+        <ExpenseCard key={expense.id} expense={expense} />
+      ))}
     </div>
   );
 };
 
 export default ExpensesContainer;
+
 
 

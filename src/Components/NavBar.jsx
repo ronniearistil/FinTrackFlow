@@ -1,38 +1,42 @@
 // src/Components/NavBar.jsx
 import React, { useState } from 'react';
-import { AppBar, Toolbar, InputBase, Box } from '@mui/material';
+import { AppBar, Toolbar, InputBase, Box, MenuItem, Select } from '@mui/material';
 import NavLink from './NavLink'; // Reusable NavLink component
 
-const NavBar = ({ onSearch }) => {
+const NavBar = ({ onSearch, onStatusFilter }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [status, setStatus] = useState('All');
 
-  const handleSearch = (event) => {
+  const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-    if (onSearch) onSearch(value);
+    onSearch(value);
+  };
+
+  const handleStatusChange = (event) => {
+    const value = event.target.value;
+    setStatus(value);
+    onStatusFilter(value);
   };
 
   return (
     <AppBar
       position="static"
-      sx={{
-        bgcolor: '#2a9d8f',
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-        mb: 2,
-      }}
+      sx={{ bgcolor: '#2a9d8f', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', mb: 2 }}
     >
-      <Toolbar>
-        <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+      <Toolbar sx={{ justifyContent: 'space-between', gap: 4 }}>
+        <Box sx={{ display: 'flex', gap: 2 }}>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/projects/new">Add Project</NavLink>
           <NavLink to="/expenses">Expenses</NavLink>
           <NavLink to="/expenses/new">Add Expense</NavLink>
         </Box>
-        <Box sx={{ flexGrow: 2, display: 'flex', justifyContent: 'center' }}>
+
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <InputBase
             placeholder="Search..."
             value={searchTerm}
-            onChange={handleSearch}
+            onChange={handleSearchChange}
             sx={{
               bgcolor: 'white',
               borderRadius: 1,
@@ -42,6 +46,17 @@ const NavBar = ({ onSearch }) => {
               '&:focus': { borderColor: '#188f87' },
             }}
           />
+
+          <Select
+            value={status}
+            onChange={handleStatusChange}
+            sx={{ bgcolor: 'white', borderRadius: 1 }}
+          >
+            <MenuItem value="All">All</MenuItem>
+            <MenuItem value="In Progress">In Progress</MenuItem>
+            <MenuItem value="Completed">Completed</MenuItem>
+            <MenuItem value="At Risk">At Risk</MenuItem>
+          </Select>
         </Box>
       </Toolbar>
     </AppBar>
@@ -49,6 +64,8 @@ const NavBar = ({ onSearch }) => {
 };
 
 export default NavBar;
+
+
 
 
 

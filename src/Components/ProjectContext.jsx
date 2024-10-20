@@ -1,4 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
+// src/Components/ProjectContext.jsx
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import mockData from '../projects.json'; // Adjusted path based on your structure
 
 export const ProjectContext = createContext();
 
@@ -7,44 +9,31 @@ export const ProjectProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
-    fetchData('projects', setProjects);
-    fetchData('expenses', setExpenses);
+    // Load data from mockData
+    setProjects(mockData.projects || []); // Fallback to empty array if undefined
+    setExpenses(mockData.expenses || []); // Fallback to empty array if undefined
   }, []);
 
-  const fetchData = async (endpoint, setter) => {
-    try {
-      const response = await fetch(`http://localhost:5001/${endpoint}`);
-      const data = await response.json();
-      setter(data);
-    } catch (error) {
-      console.error(`Error fetching ${endpoint}:`, error);
-    }
+  const archiveProject = (id) => {
+    setProjects((prevProjects) =>
+      prevProjects.map((project) =>
+        project.id === id ? { ...project, status: 'Archived' } : project
+      )
+    );
   };
 
-  const addItem = async (endpoint, newItem, setter) => {
-    try {
-      const response = await fetch(`http://localhost:5001/${endpoint}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newItem),
-      });
-      const data = await response.json();
-      setter((prev) => [...prev, data]);
-    } catch (error) {
-      console.error(`Error adding ${endpoint}:`, error);
-    }
+  const deleteExpense = (id) => {
+    setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== id));
   };
 
   return (
     <ProjectContext.Provider
-      value={{
-        projects,
-        expenses,
-        addProject: (project) => addItem('projects', project, setProjects),
-        addExpense: (expense) => addItem('expenses', expense, setExpenses),
-      }}
+      value={{ projects, expenses, setProjects, setExpenses, archiveProject, deleteExpense }}
     >
       {children}
     </ProjectContext.Provider>
   );
 };
+
+export const useProjects = () => useContext(ProjectContext);
+

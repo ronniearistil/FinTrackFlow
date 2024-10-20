@@ -1,25 +1,27 @@
-import React, { useContext } from 'react';
-import { ProjectContext } from './ProjectContext';
+// src/Components/ProjectDashboard.jsx
+import React, { useState, useEffect } from 'react';
+import { useProjects } from './ProjectContext';
 import ProjectCard from './ProjectCard';
 
-const ProjectDashboard = () => {
-  const { projects } = useContext(ProjectContext);
+const ProjectDashboard = ({ statusFilter }) => {
+  const { projects, filterProjectsByStatus, archiveProject } = useProjects();
+  const [filteredProjects, setFilteredProjects] = useState(projects);
 
-  if (!projects || projects.length === 0) {
-    return <p>No projects found or loading...</p>;
-  }
+  useEffect(() => {
+    const updatedProjects = filterProjectsByStatus(statusFilter);
+    setFilteredProjects(updatedProjects);
+  }, [statusFilter, projects]); // Re-run when status or projects change
 
   return (
-    <div>
-      <h2>Project List</h2>
-      <div className="dashboard">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
+    <div className="dashboard">
+      {filteredProjects.map((project) => (
+        <ProjectCard key={project.id} project={project} onArchive={archiveProject} />
+      ))}
     </div>
   );
 };
 
 export default ProjectDashboard;
+
+
 

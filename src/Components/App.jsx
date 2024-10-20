@@ -14,8 +14,10 @@ import theme from '../theme'; // Custom theme
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState(''); // State for search term
+  const [statusFilter, setStatusFilter] = useState(''); // State for status filter
 
   const handleSearch = (term) => setSearchTerm(term); // Update search term
+  const handleStatusFilter = (status) => setStatusFilter(status); // Update status filter
 
   return (
     <ThemeProvider theme={theme}>
@@ -23,25 +25,24 @@ const App = () => {
       <ProjectProvider>
         <div className="App">
           <Header />
-          <NavBar onSearch={handleSearch} />
+          <NavBar onSearch={handleSearch} onStatusFilter={handleStatusFilter} />
           <Routes>
             <Route path="/" element={<Navigate to="/projects" />} />
             <Route 
               path="/projects" 
-              element={<ProjectsContainer searchTerm={searchTerm} />} 
+              element={
+                <ProjectsContainer 
+                  searchTerm={searchTerm} 
+                  statusFilter={statusFilter} 
+                />
+              } 
             />
-            <Route 
-              path="/projects/new" 
-              element={<ProjectForm />} // Render Project Form on this route
-            />
+            <Route path="/projects/new" element={<ProjectForm />} />
             <Route 
               path="/expenses" 
               element={<ExpensesContainer searchTerm={searchTerm} />} 
             />
-            <Route 
-              path="/expenses/new" 
-              element={<ExpenseForm />} // Render Expense Form on this route
-            />
+            <Route path="/expenses/new" element={<ExpenseForm />} />
             <Route path="*" element={<h2>Page Not Found</h2>} />
           </Routes>
           <Footer />
@@ -52,6 +53,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 

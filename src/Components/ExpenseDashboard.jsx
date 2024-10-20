@@ -1,29 +1,33 @@
-// ExpenseDashboard.jsx
-import React, { useContext } from 'react';
-import { ProjectContext } from './ProjectContext';
+// src/Components/ProjectCard.jsx
+import React from 'react';
+import { Button, Card, CardContent, Typography } from '@mui/material';
 
-const ExpenseDashboard = () => {
-  const { expenses } = useContext(ProjectContext);
-
-  if (!expenses) return <p>Loading expenses...</p>; // Handles undefined case
+const ProjectCard = ({ project, onArchive }) => {
+  const handleArchive = () => onArchive(project.id);
 
   return (
-    <div className="expense-dashboard">
-      {expenses.length > 0 ? (
-        expenses.map((expense) => (
-          <div key={expense.id} className="expense-card">
-            <h3>{expense.name}</h3>
-            <p>Amount: ${expense.amount}</p>
-            <p>Project ID: {expense.projectId}</p>
-          </div>
-        ))
-      ) : (
-        <p>No expenses available.</p>
-      )}
-    </div>
+    <Card sx={{ width: 240, margin: 2, padding: 2 }}>
+      <CardContent>
+        <Typography variant="h5" component="div" gutterBottom>
+          {project.name}
+        </Typography>
+        <Typography variant="body2">Profit: ${project.profit}</Typography>
+        <Typography variant="body2">Cost: ${project.cost}</Typography>
+        <Typography variant="body2">Status: {project.status}</Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ marginTop: 2 }}
+          onClick={handleArchive}
+        >
+          Archive
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
 
-export default ExpenseDashboard;
+export default ProjectCard;
+
 
 
