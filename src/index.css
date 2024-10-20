@@ -51,8 +51,8 @@ h2 {
   letter-spacing: 1px;
 }
 
-/* Dashboard */
-.dashboard {
+/* ProjectDashboard */
+.ProjectDashboard {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Centers the project cards */

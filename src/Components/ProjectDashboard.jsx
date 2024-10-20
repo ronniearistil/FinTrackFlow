@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ProjectContext } from './ProjectContext';
 import ProjectCard from './ProjectCard';
 
-const Dashboard = () => {
+const ProjectDashboard = () => {
   const { projects } = useContext(ProjectContext);
 
   if (!projects || projects.length === 0) {
@@ -21,5 +21,5 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default ProjectDashboard;
 

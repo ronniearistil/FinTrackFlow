@@ -1,4 +1,4 @@
-// src/Components/ExpensesContainer.jsx
+//ExpensesContainer.jsx
 import React, { useContext, useState, useEffect } from 'react';
 import { ProjectContext } from './ProjectContext';
 import ExpenseCard from './ExpenseCard';
