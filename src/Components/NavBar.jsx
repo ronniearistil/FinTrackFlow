@@ -65,6 +65,7 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
               <MenuItem value="In Progress">In Progress</MenuItem>
               <MenuItem value="Completed">Completed</MenuItem>
               <MenuItem value="At Risk">At Risk</MenuItem>
+              <MenuItem value="All">All</MenuItem>
             </Select>
           </FormControl>
         </Box>
