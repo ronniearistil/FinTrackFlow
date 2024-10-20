@@ -37,7 +37,7 @@ const NavBar = ({ onSearch }) => {
             sx={{
               bgcolor: 'white',
               borderRadius: 1,
-              px: -10,
+              px: -2,
               width: 300,
               border: '2px solid #1bc0ad', // Accent border color
               '&:focus': { borderColor: '#188f87' }, // Primary color on focus
