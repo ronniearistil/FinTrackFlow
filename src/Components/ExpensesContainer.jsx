@@ -1,14 +1,37 @@
-// ExpensesContainer.jsx
-import React from 'react';
-import ExpenseDashboard from '../views/ExpenseDashboard';
-import ExpenseForm from '../forms/ExpenseForm';
+// src/Components/ExpensesContainer.jsx
+import React, { useContext, useState, useEffect } from 'react';
+import { ProjectContext } from './ProjectContext';
+import ExpenseForm from './ExpenseForm';
+import ExpenseCard from './ExpenseCard';
 
-const ExpensesContainer = () => (
-  <div>
-    <ExpenseForm />
-    <ExpenseDashboard />
-  </div>
-);
+const ExpensesContainer = ({ searchTerm }) => {
+  const { expenses } = useContext(ProjectContext);
+  const [filteredExpenses, setFilteredExpenses] = useState(expenses);
+
+  useEffect(() => {
+    const filtered = expenses.filter((expense) =>
+      expense.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      expense.projectId.toString().includes(searchTerm)
+    );
+    setFilteredExpenses(filtered);
+  }, [expenses, searchTerm]);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <ExpenseForm /> {/* Form always stays at the top */}
+      <div className="expense-dashboard" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>
+        {filteredExpenses.length > 0 ? (
+          filteredExpenses.map((expense) => (
+            <ExpenseCard key={expense.id} expense={expense} />
+          ))
+        ) : (
+          <h3>No matching expenses found</h3> // Message when no match is found
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default ExpensesContainer;
+
 
