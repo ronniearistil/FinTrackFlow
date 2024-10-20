@@ -1,18 +1,14 @@
 // ExpensesContainer.jsx
-import React, { useContext } from 'react';
-import { ProjectContext } from './ProjectContext';
-import ExpenseDashboard from './ExpenseDashboard';
-import ExpenseForm from './ExpenseForm';
+import React from 'react';
+import ExpenseDashboard from '../views/ExpenseDashboard';
+import ExpenseForm from '../forms/ExpenseForm';
 
-const ExpensesContainer = () => {
-  const { expenses, addExpense } = useContext(ProjectContext);
-
-  return (
-    <div>
-      <ExpenseForm addExpense={addExpense} />
-      <ExpenseDashboard expenses={expenses} />
-    </div>
-  );
-};
+const ExpensesContainer = () => (
+  <div>
+    <ExpenseForm />
+    <ExpenseDashboard />
+  </div>
+);
 
 export default ExpensesContainer;
+

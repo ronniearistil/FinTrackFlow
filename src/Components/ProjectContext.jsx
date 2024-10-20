@@ -4,78 +4,35 @@ export const ProjectContext = createContext();
 
 export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
-  const [expenses, setExpenses] = useState([]); 
+  const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5001/projects')
-      .then((res) => res.json())
-      .then((data) => setProjects(data))
-      .catch((error) => console.error('Error fetching projects:', error));
-
-    fetch('http://localhost:5001/expenses')
-      .then((res) => res.json())
-      .then((data) => setExpenses(data))
-      .catch((error) => console.error('Error fetching expenses:', error));
+    fetchData('projects', setProjects);
+    fetchData('expenses', setExpenses);
   }, []);
 
-  // CRUD operations for projects
-  const addProject = (newProject) => {
-    fetch('http://localhost:5001/projects', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newProject),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setProjects((prevProjects) => [...prevProjects, data]);
-      })
-      .catch((error) => console.error('Error adding project:', error));
+  const fetchData = async (endpoint, setter) => {
+    try {
+      const response = await fetch(`http://localhost:5001/${endpoint}`);
+      const data = await response.json();
+      setter(data);
+    } catch (error) {
+      console.error(`Error fetching ${endpoint}:`, error);
+    }
   };
 
-  const updateProject = (updatedProject) => {
-    setProjects((prevProjects) =>
-      prevProjects.map((project) => 
-        project.id === updatedProject.id ? updatedProject : project
-      )
-    );
-  };
-
-  const deleteProject = (id) => {
-    setProjects((prevProjects) => 
-      prevProjects.filter((project) => project.id !== id)
-    );
-  };
-
-  // CRUD operations for expenses
-  const addExpense = (newExpense) => {
-    fetch('http://localhost:5001/expenses', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newExpense),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setExpenses((prevExpenses) => [...prevExpenses, data]);
-      })
-      .catch((error) => console.error('Error adding expense:', error));
-  };
-
-  const updateExpense = (updatedExpense) => {
-    setExpenses((prevExpenses) =>
-      prevExpenses.map((expense) => 
-        expense.id === updatedExpense.id ? updatedExpense : expense
-      )
-    );
-  };
-
-  const deleteExpense = (id) => {
-    setExpenses((prevExpenses) => 
-      prevExpenses.filter((expense) => expense.id !== id)
-    );
+  const addItem = async (endpoint, newItem, setter) => {
+    try {
+      const response = await fetch(`http://localhost:5001/${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newItem),
+      });
+      const data = await response.json();
+      setter((prev) => [...prev, data]);
+    } catch (error) {
+      console.error(`Error adding ${endpoint}:`, error);
+    }
   };
 
   return (
@@ -83,12 +40,8 @@ export const ProjectProvider = ({ children }) => {
       value={{
         projects,
         expenses,
-        addProject,
-        updateProject,
-        deleteProject,
-        addExpense,
-        updateExpense,
-        deleteExpense,
+        addProject: (project) => addItem('projects', project, setProjects),
+        addExpense: (expense) => addItem('expenses', expense, setExpenses),
       }}
     >
       {children}

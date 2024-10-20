@@ -1,4 +1,4 @@
-ProjFlow - Multi-Project Profitability Dashboard
+FinTrackFlow - A Seamless Project Forecasting, Budgeting, and Expense Management Hub
 This project was bootstrapped with Create React App.
 
 Available Scripts
