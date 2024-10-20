@@ -1,28 +1,24 @@
 // forms/ExpenseForm.jsx
-import React, { useContext } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Button, Box } from '@mui/material';
-import { ProjectContext } from './ProjectContext';
+import { useProjects } from '../Components/ProjectContext';
 import InputField from './InputField';
 import SelectField from './SelectField';
 
 const ExpenseForm = () => {
-  const { projects, addExpense } = useContext(ProjectContext);
+  const { projects, addExpense } = useProjects();
 
   const formik = useFormik({
     initialValues: { name: '', amount: '', projectId: '' },
     validationSchema: Yup.object({
-      name: Yup.string()
-        .min(3, 'Expense name must be at least 3 characters long')
-        .required('Expense name is required'),
-      amount: Yup.number()
-        .positive('Amount must be greater than zero')
-        .required('Amount is required'),
-      projectId: Yup.string().required('Project ID is required'),
+      name: Yup.string().required('Expense name is required'),
+      amount: Yup.number().required('Amount is required'),
+      projectId: Yup.string().required('Select a project'),
     }),
     onSubmit: (values, { resetForm }) => {
-      addExpense(values);
+      addExpense({ ...values, id: Date.now().toString() });
       resetForm();
     },
   });
@@ -33,13 +29,10 @@ const ExpenseForm = () => {
       onSubmit={formik.handleSubmit}
       sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%', maxWidth: 400 }}
     >
-      <InputField formik={formik} name="name" label="Expense Name" />
-      <InputField formik={formik} name="amount" label="Amount" type="number" />
-      <SelectField formik={formik} name="projectId" label="Project" options={projects} />
-
-      <Button type="submit" variant="contained" sx={{ mt: 2 }}>
-        Add Expense
-      </Button>
+      <InputField name="name" label="Expense Name" formik={formik} />
+      <InputField name="amount" label="Amount" formik={formik} type="number" />
+      <SelectField name="projectId" label="Project" options={projects} formik={formik} />
+      <Button type="submit" variant="contained" sx={{ mt: 2 }}>Add Expense</Button>
     </Box>
   );
 };
