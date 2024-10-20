@@ -4,10 +4,9 @@ import { useProjects } from './ProjectContext';
 import ProjectCard from './ProjectCard';
 
 const ProjectsContainer = ({ searchTerm, statusFilter }) => {
-  const { projects } = useProjects(); // Get all projects from context
+  const { projects, archiveProject } = useProjects(); // Pull archive logic from context
   const [filteredProjects, setFilteredProjects] = useState([]);
 
-  // Filtering logic: Apply both search and status filters
   useEffect(() => {
     const filtered = projects.filter((project) => {
       const matchesSearch = project.name
@@ -25,11 +24,16 @@ const ProjectsContainer = ({ searchTerm, statusFilter }) => {
   return (
     <div className="dashboard">
       {filteredProjects.map((project) => (
-        <ProjectCard key={project.id} project={project} />
+        <ProjectCard 
+          key={project.id} 
+          project={project} 
+          onArchive={archiveProject} 
+        />
       ))}
     </div>
   );
 };
 
 export default ProjectsContainer;
+
 

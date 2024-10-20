@@ -1,34 +1,37 @@
 // src/Components/ProjectContext.jsx
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import mockData from '../projects.json'; // Adjusted path based on your structure
+import React, { createContext, useState, useContext } from 'react';
+import projectsData from '../projects.json'; // Adjust the path if needed
 
 export const ProjectContext = createContext();
 
 export const ProjectProvider = ({ children }) => {
-  const [projects, setProjects] = useState([]);
-  const [expenses, setExpenses] = useState([]);
+  const [projects, setProjects] = useState(projectsData.projects);
+  const [expenses, setExpenses] = useState(projectsData.expenses);
 
-  useEffect(() => {
-    // Load data from mockData
-    setProjects(mockData.projects || []); // Fallback to empty array if undefined
-    setExpenses(mockData.expenses || []); // Fallback to empty array if undefined
-  }, []);
-
-  const archiveProject = (id) => {
+  // Function to archive a project and its related expenses
+  const archiveProject = (projectId) => {
+    // Archive the project by updating its status
     setProjects((prevProjects) =>
       prevProjects.map((project) =>
-        project.id === id ? { ...project, status: 'Archived' } : project
+        project.id === projectId ? { ...project, status: 'Archived' } : project
       )
     );
-  };
 
-  const deleteExpense = (id) => {
-    setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== id));
+    // Filter out expenses related to the archived project
+    setExpenses((prevExpenses) =>
+      prevExpenses.filter((expense) => expense.projectId !== projectId)
+    );
   };
 
   return (
     <ProjectContext.Provider
-      value={{ projects, expenses, setProjects, setExpenses, archiveProject, deleteExpense }}
+      value={{
+        projects,
+        expenses,
+        archiveProject,
+        setProjects,
+        setExpenses,
+      }}
     >
       {children}
     </ProjectContext.Provider>
@@ -36,4 +39,5 @@ export const ProjectProvider = ({ children }) => {
 };
 
 export const useProjects = () => useContext(ProjectContext);
+
 
