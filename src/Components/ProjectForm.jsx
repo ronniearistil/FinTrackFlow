@@ -3,17 +3,22 @@ import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Button, Box } from '@mui/material';
-import { ProjectContext } from './ProjectContext';
+import { ProjectContext } from '../Components/ProjectContext';
 import InputField from './InputField';
 
 const ProjectForm = () => {
   const { addProject } = useContext(ProjectContext);
 
   const formik = useFormik({
-    initialValues: { name: '', profit: '', cost: '', status: '' },
+    initialValues: { 
+      name: '', 
+      profit: '', 
+      cost: '', 
+      status: 'In Progress' // Set default status
+    },
     validationSchema: Yup.object({
       name: Yup.string()
-        .min(3, 'Project name must be at least 3 characters long')
+        .min(3, 'Project name must be at least 3 characters')
         .required('Project name is required'),
       profit: Yup.number()
         .positive('Profit must be greater than zero')
@@ -24,8 +29,8 @@ const ProjectForm = () => {
       status: Yup.string().required('Status is required'),
     }),
     onSubmit: (values, { resetForm }) => {
-      addProject(values);
-      resetForm();
+      addProject({ ...values, id: Date.now().toString() }); // Assign unique ID
+      resetForm(); // Clear form after submission
     },
   });
 
@@ -33,7 +38,7 @@ const ProjectForm = () => {
     <Box
       component="form"
       onSubmit={formik.handleSubmit}
-      sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%', maxWidth: 400 }}
+      sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 400, mx: 'auto' }}
     >
       <InputField formik={formik} name="name" label="Project Name" />
       <InputField formik={formik} name="profit" label="Profit" type="number" />
@@ -48,6 +53,8 @@ const ProjectForm = () => {
 };
 
 export default ProjectForm;
+
+
 
 
 
