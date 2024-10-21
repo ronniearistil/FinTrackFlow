@@ -13,7 +13,7 @@ const ProjectForm = () => {
       name: '',
       profit: '',
       cost: '',
-      status: 'In Progress',
+      status: 'New', //fault 'New'
     },
     validationSchema: Yup.object({
       name: Yup.string().min(3, 'Must be at least 3 characters').required('Required'),
