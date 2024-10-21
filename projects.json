@@ -3,16 +3,16 @@
     {
       "id": "1",
       "name": "Project Alpha",
-      "profit": 10000,
-      "cost": 5000,
-      "status": "In Progress"
+      "profit": "15000",
+      "cost": "5500",
+      "status": "Archived"
     },
     {
       "id": "2",
-      "name": "Project Beta",
+      "name": "Project Beta (Edited)",
       "profit": 15000,
       "cost": 7000,
-      "status": "Completed"
+      "status": "Archived"
     },
     {
       "id": "3",
@@ -83,14 +83,29 @@
       "profit": 25000,
       "cost": 15000,
       "status": "In Progress"
+    },
+    {
+      "id": "1729541939126",
+      "name": "Test",
+      "profit": "100",
+      "cost": "100",
+      "status": "Archived"
+    },
+    {
+      "id": "1729543984093",
+      "name": "Mega Project 21",
+      "profit": 2500,
+      "cost": 10000,
+      "status": "Archived"
     }
   ],
   "expenses": [
     {
       "id": "1",
       "name": "Design Costs",
-      "amount": 1200,
-      "projectId": 1
+      "amount": "1500",
+      "projectId": 1,
+      "archived": true
     },
     {
       "id": "2",
@@ -169,6 +184,20 @@
       "name": "New Material ",
       "amount": 2500,
       "projectId": "a056"
+    },
+    {
+      "id": "1729541959843",
+      "name": "Test",
+      "amount": "60",
+      "projectId": "1729539406619",
+      "archived": true
+    },
+    {
+      "id": "9d43",
+      "name": "New Material 2",
+      "amount": "1200",
+      "projectId": "3",
+      "archived": true
     }
   ]
 }

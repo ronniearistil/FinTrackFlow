@@ -1,42 +1,70 @@
-import React, { useContext } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { Button, Box } from '@mui/material';
-import { ProjectContext } from '../Components/ProjectContext';
-import InputField from './InputField';
-import SelectField from './SelectField';
+// src/Components/ExpenseForm.jsx
+import React, { useState } from 'react';
+import { useProjects } from './ProjectContext';
+import { TextField, Button, Box } from '@mui/material';
 
 const ExpenseForm = () => {
-  const { projects, addExpense } = useContext(ProjectContext);
-
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      amount: '',
-      projectId: projects.length > 0 ? projects[0].id : '',
-    },
-    validationSchema: Yup.object({
-      name: Yup.string().min(3, 'Must be at least 3 characters').required('Required'),
-      amount: Yup.number().positive('Must be greater than zero').required('Required'),
-      projectId: Yup.string().required('Required'),
-    }),
-    onSubmit: (values, { resetForm }) => {
-      addExpense({ ...values, id: Date.now().toString() });
-      resetForm();
-    },
+  const { addExpense, projects } = useProjects();
+  const [formData, setFormData] = useState({
+    name: '',
+    amount: '',
+    projectId: projects.length ? projects[0].id : '',
   });
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addExpense(formData);
+    setFormData({ name: '', amount: '', projectId: projects[0]?.id || '' });
+  };
+
   return (
-    <Box component="form" onSubmit={formik.handleSubmit}>
-      <InputField formik={formik} name="name" label="Expense Name" />
-      <InputField formik={formik} name="amount" label="Amount" type="number" />
-      <SelectField formik={formik} name="projectId" label="Project" options={projects} />
-      <Button type="submit" variant="contained">Add Expense</Button>
+    <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400, mx: 'auto' }}>
+      <TextField
+        label="Expense Name"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        fullWidth
+        margin="normal"
+      />
+      <TextField
+        label="Amount"
+        name="amount"
+        type="number"
+        value={formData.amount}
+        onChange={handleChange}
+        fullWidth
+        margin="normal"
+      />
+      <TextField
+        label="Project"
+        name="projectId"
+        value={formData.projectId}
+        onChange={handleChange}
+        select
+        SelectProps={{ native: true }}
+        fullWidth
+        margin="normal"
+      >
+        {projects.map((project) => (
+          <option key={project.id} value={project.id}>
+            {project.name}
+          </option>
+        ))}
+      </TextField>
+      <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+        Add Expense
+      </Button>
     </Box>
   );
 };
 
 export default ExpenseForm;
+
 
 
 
