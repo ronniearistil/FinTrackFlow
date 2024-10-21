@@ -1,4 +1,3 @@
-// forms/ProjectForm.jsx
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -10,49 +9,37 @@ const ProjectForm = () => {
   const { addProject } = useContext(ProjectContext);
 
   const formik = useFormik({
-    initialValues: { 
-      name: '', 
-      profit: '', 
-      cost: '', 
-      status: 'In Progress' // Set default status
+    initialValues: {
+      name: '',
+      profit: '',
+      cost: '',
+      status: 'In Progress',
     },
     validationSchema: Yup.object({
-      name: Yup.string()
-        .min(3, 'Project name must be at least 3 characters')
-        .required('Project name is required'),
-      profit: Yup.number()
-        .positive('Profit must be greater than zero')
-        .required('Profit is required'),
-      cost: Yup.number()
-        .positive('Cost must be greater than zero')
-        .required('Cost is required'),
-      status: Yup.string().required('Status is required'),
+      name: Yup.string().min(3, 'Must be at least 3 characters').required('Required'),
+      profit: Yup.number().positive('Must be greater than zero').required('Required'),
+      cost: Yup.number().positive('Must be greater than zero').required('Required'),
+      status: Yup.string().required('Required'),
     }),
     onSubmit: (values, { resetForm }) => {
-      addProject({ ...values, id: Date.now().toString() }); // Assign unique ID
-      resetForm(); // Clear form after submission
+      addProject({ ...values, id: Date.now().toString() });
+      resetForm();
     },
   });
 
   return (
-    <Box
-      component="form"
-      onSubmit={formik.handleSubmit}
-      sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 400, mx: 'auto' }}
-    >
+    <Box component="form" onSubmit={formik.handleSubmit}>
       <InputField formik={formik} name="name" label="Project Name" />
       <InputField formik={formik} name="profit" label="Profit" type="number" />
       <InputField formik={formik} name="cost" label="Cost" type="number" />
       <InputField formik={formik} name="status" label="Status" />
-
-      <Button type="submit" variant="contained" sx={{ mt: 2 }}>
-        Add Project
-      </Button>
+      <Button type="submit" variant="contained">Add Project</Button>
     </Box>
   );
 };
 
 export default ProjectForm;
+
 
 
 

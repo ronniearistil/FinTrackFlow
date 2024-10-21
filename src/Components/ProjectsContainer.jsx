@@ -1,10 +1,9 @@
-// src/Components/ProjectsContainer.jsx
 import React, { useEffect, useState } from 'react';
 import { useProjects } from './ProjectContext';
 import ProjectCard from './ProjectCard';
 
 const ProjectsContainer = ({ searchTerm, statusFilter }) => {
-  const { projects, archiveProject } = useProjects(); // Pull archive logic from context
+  const { projects, archiveProject } = useProjects();
   const [filteredProjects, setFilteredProjects] = useState([]);
 
   useEffect(() => {
@@ -24,16 +23,13 @@ const ProjectsContainer = ({ searchTerm, statusFilter }) => {
   return (
     <div className="dashboard">
       {filteredProjects.map((project) => (
-        <ProjectCard 
-          key={project.id} 
-          project={project} 
-          onArchive={archiveProject} 
-        />
+        <ProjectCard key={project.id} project={project} onArchive={archiveProject} />
       ))}
     </div>
   );
 };
 
+// Ensure this export is default
 export default ProjectsContainer;
 
 
