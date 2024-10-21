@@ -88,7 +88,7 @@
       "id": "1729541939126",
       "name": "Test",
       "profit": "100",
-      "cost": "100",
+      "cost": "150",
       "status": "Archived"
     },
     {
@@ -183,7 +183,8 @@
       "id": "1729539371015",
       "name": "New Material ",
       "amount": 2500,
-      "projectId": "a056"
+      "projectId": "a056",
+      "archived": true
     },
     {
       "id": "1729541959843",
@@ -197,6 +198,34 @@
       "name": "New Material 2",
       "amount": "1200",
       "projectId": "3",
+      "archived": true
+    },
+    {
+      "id": "d3cf",
+      "name": "New Material ",
+      "amount": "2500",
+      "projectId": "5",
+      "archived": true
+    },
+    {
+      "id": "ef0f",
+      "name": "",
+      "amount": "",
+      "projectId": "1",
+      "archived": true
+    },
+    {
+      "id": "2f3d",
+      "name": "",
+      "amount": "",
+      "projectId": "1",
+      "archived": true
+    },
+    {
+      "id": "5688",
+      "name": "",
+      "amount": "",
+      "projectId": "1",
       "archived": true
     }
   ]
