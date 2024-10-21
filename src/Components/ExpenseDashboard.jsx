@@ -1,4 +1,4 @@
-// src/Components/ProjectCard.jsx
+//ProjectCard.jsx
 import React from 'react';
 import { Button, Card, CardContent, Typography } from '@mui/material';
 

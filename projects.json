@@ -1,0 +1,233 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "name": "Project Alpha",
+      "profit": "15000",
+      "cost": "5500",
+      "status": "Archived"
+    },
+    {
+      "id": "2",
+      "name": "Project Beta (Edited)",
+      "profit": 15000,
+      "cost": 7000,
+      "status": "Archived"
+    },
+    {
+      "id": "3",
+      "name": "Project Gamma",
+      "profit": 8000,
+      "cost": 4000,
+      "status": "At Risk"
+    },
+    {
+      "id": "4",
+      "name": "Project Delta",
+      "profit": 12000,
+      "cost": 6000,
+      "status": "In Progress"
+    },
+    {
+      "id": "5",
+      "name": "Project Epsilon",
+      "profit": 20000,
+      "cost": 9000,
+      "status": "Completed"
+    },
+    {
+      "id": "6",
+      "name": "Project Zeta",
+      "profit": 5000,
+      "cost": 3000,
+      "status": "In Progress"
+    },
+    {
+      "id": "7",
+      "name": "Project Eta",
+      "profit": 25000,
+      "cost": 10000,
+      "status": "Completed"
+    },
+    {
+      "id": "8",
+      "name": "Project Theta",
+      "profit": 18000,
+      "cost": 7500,
+      "status": "At Risk"
+    },
+    {
+      "id": "9",
+      "name": "Project Iota",
+      "profit": 9000,
+      "cost": 4500,
+      "status": "In Progress"
+    },
+    {
+      "id": "10",
+      "name": "Project Kappa",
+      "profit": 22000,
+      "cost": 9500,
+      "status": "Completed"
+    },
+    {
+      "id": "a056",
+      "name": "Mega Project ",
+      "profit": 10000,
+      "cost": 50000,
+      "status": "In Progress"
+    },
+    {
+      "id": "1729539406619",
+      "name": "Mega Project 2",
+      "profit": 25000,
+      "cost": 15000,
+      "status": "In Progress"
+    },
+    {
+      "id": "1729541939126",
+      "name": "Test",
+      "profit": "100",
+      "cost": "150",
+      "status": "Archived"
+    },
+    {
+      "id": "1729543984093",
+      "name": "Mega Project 21",
+      "profit": 2500,
+      "cost": 10000,
+      "status": "Archived"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "1",
+      "name": "Design Costs",
+      "amount": "1500",
+      "projectId": 1,
+      "archived": true
+    },
+    {
+      "id": "2",
+      "name": "Marketing",
+      "amount": 2400,
+      "projectId": 1
+    },
+    {
+      "id": "3",
+      "name": "Tech Tools",
+      "amount": 1600,
+      "projectId": 2
+    },
+    {
+      "id": "4",
+      "name": "Consulting Fees",
+      "amount": 900,
+      "projectId": 3
+    },
+    {
+      "id": "5",
+      "name": "Legal Services",
+      "amount": 2200,
+      "projectId": 4
+    },
+    {
+      "id": "6",
+      "name": "Training",
+      "amount": 1300,
+      "projectId": 5
+    },
+    {
+      "id": "7",
+      "name": "Overhead",
+      "amount": 3000,
+      "projectId": 6
+    },
+    {
+      "id": "8",
+      "name": "Supplies",
+      "amount": 850,
+      "projectId": 7
+    },
+    {
+      "id": "9",
+      "name": "Equipment Rental",
+      "amount": 1900,
+      "projectId": 8
+    },
+    {
+      "id": "10",
+      "name": "Consultation Fees",
+      "amount": 2200,
+      "projectId": 9
+    },
+    {
+      "id": "11",
+      "name": "Software Licensing",
+      "amount": 2600,
+      "projectId": 10
+    },
+    {
+      "id": "f37b",
+      "name": "Consulting Services ",
+      "amount": 5000,
+      "projectId": "2"
+    },
+    {
+      "id": "a42f",
+      "name": "Additional Material ",
+      "amount": 2000,
+      "projectId": "a056",
+      "archived": true
+    },
+    {
+      "id": "1729539371015",
+      "name": "New Material ",
+      "amount": 2500,
+      "projectId": "a056",
+      "archived": true
+    },
+    {
+      "id": "1729541959843",
+      "name": "Test",
+      "amount": "60",
+      "projectId": "1729539406619",
+      "archived": true
+    },
+    {
+      "id": "9d43",
+      "name": "New Material 2",
+      "amount": "1200",
+      "projectId": "3",
+      "archived": true
+    },
+    {
+      "id": "d3cf",
+      "name": "New Material ",
+      "amount": "2500",
+      "projectId": "5",
+      "archived": true
+    },
+    {
+      "id": "ef0f",
+      "name": "",
+      "amount": "",
+      "projectId": "1",
+      "archived": true
+    },
+    {
+      "id": "2f3d",
+      "name": "",
+      "amount": "",
+      "projectId": "1",
+      "archived": true
+    },
+    {
+      "id": "5688",
+      "name": "",
+      "amount": "",
+      "projectId": "1",
+      "archived": true
+    }
+  ]
+}

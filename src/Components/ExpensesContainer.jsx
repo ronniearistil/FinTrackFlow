@@ -1,11 +1,14 @@
-// src/Components/ExpensesContainer.jsx
 import React, { useEffect, useState } from 'react';
 import { useProjects } from './ProjectContext';
 import ExpenseCard from './ExpenseCard';
 
 const ExpensesContainer = ({ searchTerm }) => {
-  const { expenses } = useProjects();
+  const { expenses, archiveExpense } = useProjects();
   const [filteredExpenses, setFilteredExpenses] = useState([]);
+
+  const handleEdit = (expense) => {
+    console.log('Editing expense:', expense); // Implement your edit logic here
+  };
 
   useEffect(() => {
     const visibleExpenses = expenses.filter(
@@ -18,7 +21,12 @@ const ExpensesContainer = ({ searchTerm }) => {
   return (
     <div className="expense-dashboard">
       {filteredExpenses.map((expense) => (
-        <ExpenseCard key={expense.id} expense={expense} />
+        <ExpenseCard
+          key={expense.id}
+          expense={expense}
+          onEdit={handleEdit} // Pass the onEdit function here
+          onArchive={archiveExpense} // Pass the onArchive function here
+        />
       ))}
     </div>
   );

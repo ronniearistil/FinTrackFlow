@@ -1,17 +1,18 @@
-// src/Components/ProjectsContainer.jsx
 import React, { useEffect, useState } from 'react';
 import { useProjects } from './ProjectContext';
 import ProjectCard from './ProjectCard';
 
 const ProjectsContainer = ({ searchTerm, statusFilter }) => {
-  const { projects, archiveProject } = useProjects(); // Pull archive logic from context
+  const { projects, archiveProject } = useProjects(); // Use archive function from context
   const [filteredProjects, setFilteredProjects] = useState([]);
+
+  const handleEdit = (project) => {
+    console.log('Editing project:', project); // Replace with your edit logic
+  };
 
   useEffect(() => {
     const filtered = projects.filter((project) => {
-      const matchesSearch = project.name
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+      const matchesSearch = project.name.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesStatus =
         statusFilter === 'All' || statusFilter === '' || project.status === statusFilter;
 
@@ -24,10 +25,11 @@ const ProjectsContainer = ({ searchTerm, statusFilter }) => {
   return (
     <div className="dashboard">
       {filteredProjects.map((project) => (
-        <ProjectCard 
-          key={project.id} 
-          project={project} 
-          onArchive={archiveProject} 
+        <ProjectCard
+          key={project.id}
+          project={project}
+          onEdit={handleEdit} // Pass the onEdit function
+          onArchive={archiveProject} // Pass the onArchive function
         />
       ))}
     </div>
@@ -35,5 +37,6 @@ const ProjectsContainer = ({ searchTerm, statusFilter }) => {
 };
 
 export default ProjectsContainer;
+
 
 
