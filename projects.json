@@ -177,7 +177,8 @@
       "id": "a42f",
       "name": "Additional Material ",
       "amount": 2000,
-      "projectId": "a056"
+      "projectId": "a056",
+      "archived": true
     },
     {
       "id": "1729539371015",
