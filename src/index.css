@@ -112,7 +112,7 @@ button:hover {
   align-items: center; /* Vertically center the items */
   background-color: #2a9d8f; /* Updated background color */
   padding: 10px 20px; /* Adjust padding if needed */
-  width: 100%;
+  /* width: 100%; */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 

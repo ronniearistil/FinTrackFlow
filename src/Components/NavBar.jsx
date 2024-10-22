@@ -57,8 +57,8 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
             sx={{
               bgcolor: 'white',
               borderRadius: 1,
-              px: 2,
-              width: 450, // Increased width for 50% longer search bar
+              px: 5,
+              width: 700, 
               border: '2px solid #1bc0ad',
               '&:focus': { borderColor: '#188f87' },
             }}
