@@ -3,17 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { useProjects } from './ProjectContext';
 import ProjectCard from './ProjectCard';
 
-const ProjectsContainer = ({ searchTerm, statusFilter }) => {
+const ProjectsContainer = ({ searchTerm, statusFilter, sortOption }) => {
   const { projects, archiveProject } = useProjects();
-  // const [filteredProjects, setFilteredProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
 
-  // useEffect(() => {
+  useEffect(() => {
     const lowerCasedSearchTerm = searchTerm.toLowerCase();
 
-    const filteredProjects = projects.filter((project) => {
+    // Filter projects based on search term and status
+    let filtered = projects.filter((project) => {
       const matchesSearch =
         project.name.toLowerCase().includes(lowerCasedSearchTerm) ||
-        project.id.includes(searchTerm); // Search by ID
+        project.id.includes(searchTerm);
 
       const matchesStatus =
         statusFilter === 'All' || statusFilter === '' || project.status === statusFilter;
@@ -21,8 +22,30 @@ const ProjectsContainer = ({ searchTerm, statusFilter }) => {
       return matchesSearch && matchesStatus;
     });
 
-  //   setFilteredProjects(filtered);
-  // }, [projects, searchTerm, statusFilter]);
+    // Sort projects based on the selected option
+    if (sortOption) {
+      filtered = [...filtered].sort((a, b) => {
+        switch (sortOption) {
+          case 'nameAsc':
+            return a.name.localeCompare(b.name);
+          case 'nameDesc':
+            return b.name.localeCompare(a.name);
+          case 'profitHigh':
+            return b.profit - a.profit;
+          case 'profitLow':
+            return a.profit - b.profit;
+          case 'costHigh':
+            return b.cost - a.cost;
+          case 'costLow':
+            return a.cost - b.cost;
+          default:
+            return 0;
+        }
+      });
+    }
+
+    setFilteredProjects(filtered);
+  }, [projects, searchTerm, statusFilter, sortOption]);
 
   return (
     <div className="dashboard">
@@ -34,6 +57,7 @@ const ProjectsContainer = ({ searchTerm, statusFilter }) => {
 };
 
 export default ProjectsContainer;
+
 
 
 

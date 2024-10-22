@@ -16,16 +16,18 @@ import theme from '../theme';
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
+  const [sortOption, setSortOption] = useState('');
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <ProjectProvider>
         <div className="App">
-          <Header /> 
+          <Header />
           <NavBar
             onSearch={(term) => setSearchTerm(term)}
             onStatusFilter={(status) => setStatusFilter(status)}
+            onSort={(option) => setSortOption(option)} // Pass sort option to ProjectsContainer
           />
           <Routes>
             <Route path="/" element={<Navigate to="/projects" />} />
@@ -33,6 +35,7 @@ const App = () => {
               <ProjectsContainer 
                 searchTerm={searchTerm} 
                 statusFilter={statusFilter} 
+                sortOption={sortOption} 
               />} 
             />
             <Route path="/projects/new" element={<ProjectForm />} />
@@ -49,6 +52,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 

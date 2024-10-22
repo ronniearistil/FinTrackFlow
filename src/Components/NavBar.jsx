@@ -3,20 +3,27 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, InputBase, Box, MenuItem, Select, FormControl } from '@mui/material';
 import NavLink from './NavLink';
 
-const NavBar = ({ onSearch, onStatusFilter }) => {
+const NavBar = ({ onSearch, onStatusFilter, onSort }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [status, setStatus] = useState('');
+  const [sortOption, setSortOption] = useState('');
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
-    setSearchTerm(value); // Update local state
-    onSearch(value); // Pass value to parent
+    setSearchTerm(value);
+    onSearch(value);
   };
 
   const handleStatusChange = (e) => {
     const value = e.target.value;
     setStatus(value);
     onStatusFilter(value);
+  };
+
+  const handleSortChange = (e) => {
+    const value = e.target.value;
+    setSortOption(value);
+    onSort(value); // Pass sort option to parent component
   };
 
   return (
@@ -44,7 +51,7 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
             }}
           />
 
-          <FormControl sx={{ minWidth: 200 }}>
+          <FormControl sx={{ minWidth: 150 }}>
             <Select
               displayEmpty
               value={status}
@@ -60,6 +67,25 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
               <MenuItem value="All">All</MenuItem>
             </Select>
           </FormControl>
+
+          <FormControl sx={{ minWidth: 150 }}>
+            <Select
+              displayEmpty
+              value={sortOption}
+              onChange={handleSortChange}
+              sx={{ bgcolor: 'white', borderRadius: 1 }}
+            >
+              <MenuItem value="">
+                <em>Sort projects by</em>
+              </MenuItem>
+              <MenuItem value="nameAsc">Name (A-Z)</MenuItem>
+              <MenuItem value="nameDesc">Name (Z-A)</MenuItem>
+              <MenuItem value="profitHigh">Profit (High to Low)</MenuItem>
+              <MenuItem value="profitLow">Profit (Low to High)</MenuItem>
+              <MenuItem value="costHigh">Cost (High to Low)</MenuItem>
+              <MenuItem value="costLow">Cost (Low to High)</MenuItem>
+            </Select>
+          </FormControl>
         </Box>
       </Toolbar>
     </AppBar>
@@ -67,6 +93,7 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
 };
 
 export default NavBar;
+
 
 
 
