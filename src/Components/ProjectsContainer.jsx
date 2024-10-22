@@ -10,11 +10,11 @@ const ProjectsContainer = ({ searchTerm, statusFilter, sortOption }) => {
   useEffect(() => {
     const lowerCasedSearchTerm = searchTerm.toLowerCase();
 
-    // Filter projects based on search term and status
+    // Filter projects based on search term and status filter
     let filtered = projects.filter((project) => {
       const matchesSearch =
         project.name.toLowerCase().includes(lowerCasedSearchTerm) ||
-        project.id.includes(searchTerm);
+        project.id.includes(searchTerm); // Search by name or ID
 
       const matchesStatus =
         statusFilter === 'All' || statusFilter === '' || project.status === statusFilter;
@@ -22,9 +22,9 @@ const ProjectsContainer = ({ searchTerm, statusFilter, sortOption }) => {
       return matchesSearch && matchesStatus;
     });
 
-    // Sort projects based on the selected option
+    // Apply sorting based on the selected sort option
     if (sortOption) {
-      filtered = [...filtered].sort((a, b) => {
+      filtered = filtered.sort((a, b) => {
         switch (sortOption) {
           case 'nameAsc':
             return a.name.localeCompare(b.name);
@@ -57,6 +57,7 @@ const ProjectsContainer = ({ searchTerm, statusFilter, sortOption }) => {
 };
 
 export default ProjectsContainer;
+
 
 
 

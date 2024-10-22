@@ -1,3 +1,5 @@
+// ExpenseCard.jsx
+
 import React, { useState } from 'react';
 import { IconButton, Menu, MenuItem, Dialog, TextField, Button } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -19,22 +21,28 @@ const ExpenseCard = ({ expense }) => {
     handleMenuClose();
   };
 
-  const handleEditChange = (e) => {
+  const handleEditChange = (e) => 
     setUpdatedExpense({ ...updatedExpense, [e.target.name]: e.target.value });
-  };
 
   const handleEditSave = () => {
     editExpense(updatedExpense);
     setEditModalOpen(false);
   };
 
-  const handleArchive = () => {
-    archiveExpense(expense.id);
+  const handleArchiveToggle = async () => {
+    await archiveExpense(expense.id);
     handleMenuClose();
   };
 
   return (
-    <div className="expense-card">
+    <div
+      className="expense-card"
+      style={{
+        opacity: expense.archived ? 0.5 : 1,
+        backgroundColor: expense.archived ? '#e0e0e0' : 'white',
+        transition: 'opacity 0.3s ease',
+      }}
+    >
       <h3>{expense.name}</h3>
       <p>Amount: ${expense.amount}</p>
       <p>Project ID: {expense.projectId}</p>
@@ -45,7 +53,9 @@ const ExpenseCard = ({ expense }) => {
 
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
         <MenuItem onClick={handleEditOpen}>Edit</MenuItem>
-        <MenuItem onClick={handleArchive}>Archive</MenuItem>
+        <MenuItem onClick={handleArchiveToggle}>
+          {expense.archived ? 'Unarchive' : 'Archive'}
+        </MenuItem>
       </Menu>
 
       <Dialog open={editModalOpen} onClose={() => setEditModalOpen(false)}>

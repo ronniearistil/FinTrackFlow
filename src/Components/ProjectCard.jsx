@@ -1,16 +1,15 @@
 // ProjectCard.jsx
-// Renders individual project details and handles editing and archiving.
 
 import React, { useState } from 'react';
 import { IconButton, Menu, MenuItem, TextField, Button, Dialog } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useProjects } from './ProjectContext'; // Consuming context to access project functions.
+import { useProjects } from './ProjectContext';
 
 const ProjectCard = ({ project }) => {
-  const { editProject, archiveProject } = useProjects(); // Access context functions.
+  const { editProject, archiveProject } = useProjects();
   const [anchorEl, setAnchorEl] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const [updatedProject, setUpdatedProject] = useState(project); // Local state for edit.
+  const [updatedProject, setUpdatedProject] = useState(project);
 
   const open = Boolean(anchorEl);
 
@@ -22,26 +21,28 @@ const ProjectCard = ({ project }) => {
     handleMenuClose();
   };
 
-  const handleEditChange = (e) =>
+  const handleEditChange = (e) => 
     setUpdatedProject({ ...updatedProject, [e.target.name]: e.target.value });
 
   const handleEditSave = () => {
-    editProject(updatedProject); // Save changes via context function.
+    editProject(updatedProject);
     setEditModalOpen(false);
   };
 
-  const handleArchive = async () => {
-    try {
-      await archiveProject(project.id); // Archive the project.
-      console.log(`Archived project: ${project.id}`);
-    } catch (error) {
-      console.error('Failed to archive project:', error);
-    }
+  const handleArchiveToggle = async () => {
+    await archiveProject(project.id);
     handleMenuClose();
   };
 
   return (
-    <div className="project-card">
+    <div
+      className="project-card"
+      style={{
+        opacity: project.status === 'Archived' ? 0.5 : 1,
+        backgroundColor: project.status === 'Archived' ? '#f0f0f0' : 'white',
+        transition: 'opacity 0.3s ease',
+      }}
+    >
       <h3>{project.name}</h3>
       <p>Profit: ${project.profit}</p>
       <p>Cost: ${project.cost}</p>
@@ -53,7 +54,9 @@ const ProjectCard = ({ project }) => {
 
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
         <MenuItem onClick={handleEditOpen}>Edit</MenuItem>
-        <MenuItem onClick={handleArchive}>Archive</MenuItem>
+        <MenuItem onClick={handleArchiveToggle}>
+          {project.status === 'Archived' ? 'Unarchive' : 'Archive'}
+        </MenuItem>
       </Menu>
 
       <Dialog open={editModalOpen} onClose={() => setEditModalOpen(false)}>
@@ -92,6 +95,7 @@ const ProjectCard = ({ project }) => {
 };
 
 export default ProjectCard;
+
 
 
 

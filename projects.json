@@ -4,15 +4,15 @@
       "id": "1",
       "name": "Project Alpha",
       "profit": "15000",
-      "cost": "6000",
-      "status": "Archived"
+      "cost": "6500",
+      "status": "Active"
     },
     {
       "id": "2",
       "name": "Project Beta",
       "profit": 15000,
       "cost": 7000,
-      "status": "Archived"
+      "status": "Active"
     },
     {
       "id": "3",
@@ -24,8 +24,8 @@
     {
       "id": "4",
       "name": "Project Delta",
-      "profit": 12000,
-      "cost": 6000,
+      "profit": "15000",
+      "cost": "6500",
       "status": "In Progress"
     },
     {
@@ -89,14 +89,14 @@
       "name": "Test Project",
       "profit": "100",
       "cost": "150",
-      "status": "Archived"
+      "status": "Active"
     },
     {
       "id": "1729543984093",
       "name": "Mega Project 21",
       "profit": 2500,
       "cost": 10000,
-      "status": "Archived"
+      "status": "Active"
     },
     {
       "id": "1729548544276",
@@ -110,7 +110,7 @@
       "name": "Mega Project 4",
       "profit": "3500",
       "cost": 2000,
-      "status": "Archived"
+      "status": "Active"
     },
     {
       "id": "17aa",
@@ -118,6 +118,13 @@
       "profit": 1000,
       "cost": 500,
       "status": "Archived"
+    },
+    {
+      "id": "62ba",
+      "name": "Mega Project 5",
+      "profit": 500000,
+      "cost": 250000,
+      "status": "New"
     }
   ],
   "expenses": [
@@ -126,7 +133,7 @@
       "name": "Design Costs",
       "amount": "1500",
       "projectId": 1,
-      "archived": true
+      "archived": false
     },
     {
       "id": "2",
@@ -179,14 +186,15 @@
     {
       "id": "10",
       "name": "Consultation Fees",
-      "amount": 2200,
+      "amount": "2500",
       "projectId": 9
     },
     {
       "id": "11",
       "name": "Software Licensing",
       "amount": 2600,
-      "projectId": 10
+      "projectId": 10,
+      "archived": true
     },
     {
       "id": "f37b",
@@ -199,35 +207,35 @@
       "name": "Additional Material ",
       "amount": 2000,
       "projectId": "a056",
-      "archived": true
+      "archived": false
     },
     {
       "id": "1729539371015",
       "name": "New Material ",
       "amount": 2500,
       "projectId": "a056",
-      "archived": true
+      "archived": false
     },
     {
       "id": "1729541959843",
       "name": "Test",
       "amount": "60",
       "projectId": "1729539406619",
-      "archived": true
+      "archived": false
     },
     {
       "id": "9d43",
       "name": "New Material 2",
       "amount": "1200",
       "projectId": "3",
-      "archived": true
+      "archived": false
     },
     {
       "id": "d3cf",
       "name": "New Material ",
       "amount": "2500",
       "projectId": "5",
-      "archived": true
+      "archived": false
     },
     {
       "id": "ef0f",
@@ -255,27 +263,28 @@
       "name": "New Material ",
       "amount": 1500,
       "projectId": "1",
-      "archived": true
+      "archived": false
     },
     {
       "id": "1729570522449",
       "name": "New Material ",
       "amount": "200",
       "projectId": "1",
-      "archived": true
+      "archived": false
     },
     {
       "id": "1729570960267",
       "name": "New Material 2",
       "amount": "2500",
-      "projectId": "1729570850776"
+      "projectId": "1729570850776",
+      "archived": false
     },
     {
       "id": "1729613595000",
       "name": "YXZ",
       "amount": "3000",
       "projectId": "17aa",
-      "archived": true
+      "archived": false
     }
   ]
 }
