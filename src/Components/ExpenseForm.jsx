@@ -27,7 +27,7 @@ const ExpenseForm = () => {
   });
 
   return (
-    <Box component="form" onSubmit={formik.handleSubmit} sx={{ maxWidth: 400, mx: 'auto' }}>
+    <Box component="form" onSubmit={formik.handleSubmit} sx={{ maxWidth: 600, mx: 'auto' }}>
       <InputField formik={formik} name="name" label="Expense Name" />
       <InputField formik={formik} name="amount" label="Amount" type="number" />
 
