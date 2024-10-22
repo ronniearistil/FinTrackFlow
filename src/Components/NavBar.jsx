@@ -1,17 +1,26 @@
 // src/Components/NavBar.jsx
 import React, { useState } from 'react';
 import { AppBar, Toolbar, InputBase, Box, MenuItem, Select, FormControl } from '@mui/material';
-import NavLink from './NavLink'; 
+import NavLink from './NavLink';
 
 const NavBar = ({ onSearch, onStatusFilter }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [status, setStatus] = useState('');
 
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value); // Update local state
+    onSearch(value); // Pass value to parent
+  };
+
+  const handleStatusChange = (e) => {
+    const value = e.target.value;
+    setStatus(value);
+    onStatusFilter(value);
+  };
+
   return (
-    <AppBar
-      position="static"
-      sx={{ bgcolor: '#2a9d8f', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', mb: 2 }}
-    >
+    <AppBar position="static" sx={{ bgcolor: '#2a9d8f', mb: 2 }}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', gap: 4 }}>
         <Box sx={{ display: 'flex', gap: 2 }}>
           <NavLink to="/projects">Projects</NavLink>
@@ -22,9 +31,9 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexGrow: 1, justifyContent: 'center' }}>
           <InputBase
-            placeholder="Search..."
+            placeholder="Search by name or ID..."
             value={searchTerm}
-            onChange={(e) => onSearch(e.target.value)}
+            onChange={handleSearchChange}
             sx={{
               bgcolor: 'white',
               borderRadius: 1,
@@ -39,7 +48,7 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
             <Select
               displayEmpty
               value={status}
-              onChange={(e) => onStatusFilter(e.target.value)}
+              onChange={handleStatusChange}
               sx={{ bgcolor: 'white', borderRadius: 1 }}
             >
               <MenuItem value="">

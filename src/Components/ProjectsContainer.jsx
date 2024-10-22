@@ -1,16 +1,20 @@
 // src/Components/ProjectsContainer.jsx
 import React, { useEffect, useState } from 'react';
 import { useProjects } from './ProjectContext';
-import ProjectCard from './ProjectCard'; // Display each project
+import ProjectCard from './ProjectCard';
 
 const ProjectsContainer = ({ searchTerm, statusFilter }) => {
   const { projects, archiveProject } = useProjects();
   const [filteredProjects, setFilteredProjects] = useState([]);
 
-  // Filter projects based on search term and status filter
   useEffect(() => {
+    const lowerCasedSearchTerm = searchTerm.toLowerCase();
+
     const filtered = projects.filter((project) => {
-      const matchesSearch = project.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch =
+        project.name.toLowerCase().includes(lowerCasedSearchTerm) ||
+        project.id.includes(searchTerm); // Search by ID
+
       const matchesStatus =
         statusFilter === 'All' || statusFilter === '' || project.status === statusFilter;
 
@@ -30,6 +34,7 @@ const ProjectsContainer = ({ searchTerm, statusFilter }) => {
 };
 
 export default ProjectsContainer;
+
 
 
 
