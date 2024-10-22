@@ -86,7 +86,7 @@
     },
     {
       "id": "1729541939126",
-      "name": "Test",
+      "name": "Test Project",
       "profit": "100",
       "cost": "150",
       "status": "Archived"
@@ -96,6 +96,20 @@
       "name": "Mega Project 21",
       "profit": 2500,
       "cost": 10000,
+      "status": "Archived"
+    },
+    {
+      "id": "1729548544276",
+      "name": "Mega Project 3",
+      "profit": 2500,
+      "cost": 100,
+      "status": "New"
+    },
+    {
+      "id": "1729570850776",
+      "name": "Mega Project 4",
+      "profit": "3500",
+      "cost": 2000,
       "status": "Archived"
     }
   ],
@@ -228,6 +242,26 @@
       "amount": "",
       "projectId": "1",
       "archived": true
+    },
+    {
+      "id": "1729548504088",
+      "name": "New Material ",
+      "amount": 1500,
+      "projectId": "1",
+      "archived": true
+    },
+    {
+      "id": "1729570522449",
+      "name": "New Material ",
+      "amount": "200",
+      "projectId": "1",
+      "archived": true
+    },
+    {
+      "id": "1729570960267",
+      "name": "New Material 2",
+      "amount": "2500",
+      "projectId": "1729570850776"
     }
   ]
 }

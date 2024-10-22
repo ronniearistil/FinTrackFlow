@@ -1,20 +1,25 @@
+// src/Components/ProjectContext.jsx
+// Provides global state management for projects and expenses using React Context.
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-const PROJECTS_URL = 'http://localhost:5001/projects';
+const PROJECTS_URL = 'http://localhost:5001/projects'; // JSON server endpoint
 const EXPENSES_URL = 'http://localhost:5001/expenses';
 
 export const ProjectContext = createContext();
 
+// ProjectProvider: Wraps the entire app with global state for projects and expenses.
 export const ProjectProvider = ({ children }) => {
-  const [projects, setProjects] = useState([]);
-  const [expenses, setExpenses] = useState([]);
+  const [projects, setProjects] = useState([]); // Store for project data
+  const [expenses, setExpenses] = useState([]); // Store for expense data
 
-  // Fetch all projects and expenses when the component mounts
+  // Fetch all projects and expenses when the component mounts.
   useEffect(() => {
     fetchProjects();
     fetchExpenses();
   }, []);
 
+  // Fetch projects from the JSON server.
   const fetchProjects = async () => {
     try {
       const response = await fetch(PROJECTS_URL);
@@ -25,6 +30,7 @@ export const ProjectProvider = ({ children }) => {
     }
   };
 
+  // Fetch expenses from the JSON server.
   const fetchExpenses = async () => {
     try {
       const response = await fetch(EXPENSES_URL);
@@ -35,7 +41,7 @@ export const ProjectProvider = ({ children }) => {
     }
   };
 
-  // Add a project and persist it
+  // Add a new project and update the state.
   const addProject = async (newProject) => {
     try {
       const response = await fetch(PROJECTS_URL, {
@@ -45,13 +51,13 @@ export const ProjectProvider = ({ children }) => {
       });
 
       const savedProject = await response.json();
-      setProjects((prev) => [...prev, savedProject]);
+      setProjects((prev) => [...prev, savedProject]); // State update with new project
     } catch (error) {
       console.error('Error adding project:', error);
     }
   };
 
-  // Add an expense and persist it
+  // Add a new expense and update the state.
   const addExpense = async (newExpense) => {
     try {
       const response = await fetch(EXPENSES_URL, {
@@ -61,13 +67,13 @@ export const ProjectProvider = ({ children }) => {
       });
 
       const savedExpense = await response.json();
-      setExpenses((prev) => [...prev, savedExpense]);
+      setExpenses((prev) => [...prev, savedExpense]); // State update with new expense
     } catch (error) {
       console.error('Error adding expense:', error);
     }
   };
 
-  // Edit a project and persist it with PATCH
+  // Edit an existing project and persist the changes.
   const editProject = async (updatedProject) => {
     try {
       const response = await fetch(`${PROJECTS_URL}/${updatedProject.id}`, {
@@ -87,7 +93,7 @@ export const ProjectProvider = ({ children }) => {
     }
   };
 
-  // Edit an expense and persist it with PATCH
+  // Edit an existing expense and persist the changes.
   const editExpense = async (updatedExpense) => {
     try {
       const response = await fetch(`${EXPENSES_URL}/${updatedExpense.id}`, {
@@ -107,7 +113,7 @@ export const ProjectProvider = ({ children }) => {
     }
   };
 
-  // Archive a project and persist it
+  // Archive a project by marking its status as 'Archived' and update state.
   const archiveProject = async (projectId) => {
     try {
       const response = await fetch(`${PROJECTS_URL}/${projectId}`, {
@@ -118,15 +124,18 @@ export const ProjectProvider = ({ children }) => {
 
       if (!response.ok) throw new Error('Failed to archive project');
 
+      // Filter out the archived project from the current state.
       setProjects((prev) =>
-        prev.filter((project) => project.id !== projectId)
+        prev.map((project) =>
+          project.id === projectId ? { ...project, status: 'Archived' } : project
+        )
       );
     } catch (error) {
       console.error('Error archiving project:', error);
     }
   };
 
-  // Archive an expense and persist it
+  // Archive an expense by marking it as archived and update state.
   const archiveExpense = async (expenseId) => {
     try {
       const response = await fetch(`${EXPENSES_URL}/${expenseId}`, {
@@ -137,7 +146,10 @@ export const ProjectProvider = ({ children }) => {
 
       if (!response.ok) throw new Error('Failed to archive expense');
 
-      setExpenses((prev) => prev.filter((expense) => expense.id !== expenseId));
+      // Filter out the archived expense from the current state.
+      setExpenses((prev) =>
+        prev.filter((expense) => expense.id !== expenseId)
+      );
     } catch (error) {
       console.error('Error archiving expense:', error);
     }
@@ -161,5 +173,8 @@ export const ProjectProvider = ({ children }) => {
   );
 };
 
+// Custom hook to consume the ProjectContext easily.
 export const useProjects = () => useContext(ProjectContext);
+
+
 

@@ -7,12 +7,14 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [status, setStatus] = useState('');
 
+  // Handle Search Input Changes
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
     onSearch(value);
   };
 
+  // Handle Filter Changes for Status
   const handleStatusChange = (event) => {
     const value = event.target.value;
     setStatus(value);
@@ -22,13 +24,14 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
   return (
     <AppBar
       position="static"
-      sx={{ 
-        bgcolor: '#2a9d8f', 
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', 
-        mb: 2 
+      sx={{
+        bgcolor: '#2a9d8f',
+        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+        mb: 2,
       }}
     >
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', gap: 4 }}>
+        {/* Navigation Links */}
         <Box sx={{ display: 'flex', gap: 2 }}>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/projects/new">Add Project</NavLink>
@@ -36,7 +39,17 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
           <NavLink to="/expenses/new">Add Expense</NavLink>
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexGrow: 1, justifyContent: 'center' }}>
+        {/* Centered Search and Filter */}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 2,
+            flexGrow: 1,
+            justifyContent: 'center',
+          }}
+        >
+          {/* Search Bar: 50% Longer & Centered */}
           <InputBase
             placeholder="Search..."
             value={searchTerm}
@@ -44,28 +57,29 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
             sx={{
               bgcolor: 'white',
               borderRadius: 1,
-              px: 1,
-              width: 300,
+              px: 2,
+              width: 450, // Increased width for 50% longer search bar
               border: '2px solid #1bc0ad',
               '&:focus': { borderColor: '#188f87' },
             }}
           />
 
+          {/* Status Filter Dropdown */}
           <FormControl sx={{ minWidth: 200 }}>
             <Select
               displayEmpty
               value={status}
               onChange={handleStatusChange}
               sx={{ bgcolor: 'white', borderRadius: 1 }}
-              inputProps={{ 'aria-label': 'Filter projects by status' }} // Accessibility improvement
+              inputProps={{ 'aria-label': 'Filter projects by status' }}
             >
               <MenuItem value="">
-                <em>Filter projects by status</em> {/* Default placeholder text */}
+                <em>Filter projects by status</em>
               </MenuItem>
               <MenuItem value="In Progress">In Progress</MenuItem>
               <MenuItem value="Completed">Completed</MenuItem>
               <MenuItem value="At Risk">At Risk</MenuItem>
-              <MenuItem value="All">All</MenuItem>
+              <MenuItem value="All">All</MenuItem> {/* Include "All" as requested */}
             </Select>
           </FormControl>
         </Box>
@@ -75,6 +89,10 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
 };
 
 export default NavBar;
+
+
+
+
 
 
 
