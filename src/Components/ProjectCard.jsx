@@ -1,3 +1,5 @@
+// ProjectCard.jsx
+
 import React, { useState } from 'react';
 import { IconButton, Menu, MenuItem, TextField, Button, Dialog } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -19,74 +21,83 @@ const ProjectCard = ({ project }) => {
     handleMenuClose();
   };
 
-  const handleEditChange = (e) => {
+  const handleEditChange = (e) => 
     setUpdatedProject({ ...updatedProject, [e.target.name]: e.target.value });
-  };
 
   const handleEditSave = () => {
     editProject(updatedProject);
     setEditModalOpen(false);
   };
 
-  const handleArchive = () => {
-    archiveProject(project.id);
+  const handleArchiveToggle = async () => {
+    await archiveProject(project.id);
     handleMenuClose();
   };
 
   return (
-    <div className="project-card">
+    <div
+      className="project-card"
+      style={{
+        opacity: project.status === 'Archived' ? 0.5 : 1,
+        backgroundColor: project.status === 'Archived' ? '#f0f0f0' : 'white',
+        transition: 'opacity 0.3s ease',
+      }}
+    >
       <h3>{project.name}</h3>
       <p>Profit: ${project.profit}</p>
       <p>Cost: ${project.cost}</p>
       <p>Status: {project.status}</p>
 
-      <IconButton aria-label="more" onClick={handleMenuOpen}>
+      <IconButton onClick={handleMenuOpen}>
         <MoreVertIcon />
       </IconButton>
 
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
         <MenuItem onClick={handleEditOpen}>Edit</MenuItem>
-        <MenuItem onClick={handleArchive}>Archive</MenuItem>
+        <MenuItem onClick={handleArchiveToggle}>
+          {project.status === 'Archived' ? 'Unarchive' : 'Archive'}
+        </MenuItem>
       </Menu>
 
       <Dialog open={editModalOpen} onClose={() => setEditModalOpen(false)}>
-        <div className="edit-form">
-          <TextField
-            label="Project Name"
-            name="name"
-            value={updatedProject.name}
-            onChange={handleEditChange}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Profit"
-            name="profit"
-            type="number"
-            value={updatedProject.profit}
-            onChange={handleEditChange}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Cost"
-            name="cost"
-            type="number"
-            value={updatedProject.cost}
-            onChange={handleEditChange}
-            fullWidth
-            margin="normal"
-          />
-          <Button onClick={handleEditSave} variant="contained" color="primary">
-            Save
-          </Button>
-        </div>
+        <TextField
+          label="Project Name"
+          name="name"
+          value={updatedProject.name}
+          onChange={handleEditChange}
+          fullWidth
+          margin="normal"
+        />
+        <TextField
+          label="Profit"
+          name="profit"
+          type="number"
+          value={updatedProject.profit}
+          onChange={handleEditChange}
+          fullWidth
+          margin="normal"
+        />
+        <TextField
+          label="Cost"
+          name="cost"
+          type="number"
+          value={updatedProject.cost}
+          onChange={handleEditChange}
+          fullWidth
+          margin="normal"
+        />
+        <Button onClick={handleEditSave} variant="contained">
+          Save
+        </Button>
       </Dialog>
     </div>
   );
 };
 
 export default ProjectCard;
+
+
+
 
 
 

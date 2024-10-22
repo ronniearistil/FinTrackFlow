@@ -1,33 +1,33 @@
 // src/Components/NavBar.jsx
 import React, { useState } from 'react';
 import { AppBar, Toolbar, InputBase, Box, MenuItem, Select, FormControl } from '@mui/material';
-import NavLink from './NavLink'; // Reusable NavLink component
+import NavLink from './NavLink';
 
-const NavBar = ({ onSearch, onStatusFilter }) => {
+const NavBar = ({ onSearch, onStatusFilter, onSort }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [status, setStatus] = useState('');
+  const [sortOption, setSortOption] = useState('');
 
-  const handleSearchChange = (event) => {
-    const value = event.target.value;
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
     setSearchTerm(value);
     onSearch(value);
   };
 
-  const handleStatusChange = (event) => {
-    const value = event.target.value;
+  const handleStatusChange = (e) => {
+    const value = e.target.value;
     setStatus(value);
     onStatusFilter(value);
   };
 
+  const handleSortChange = (e) => {
+    const value = e.target.value;
+    setSortOption(value);
+    onSort(value); // Pass sort option to parent component
+  };
+
   return (
-    <AppBar
-      position="static"
-      sx={{ 
-        bgcolor: '#2a9d8f', 
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', 
-        mb: 2 
-      }}
-    >
+    <AppBar position="static" sx={{ bgcolor: '#2a9d8f', mb: 2 }}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', gap: 4 }}>
         <Box sx={{ display: 'flex', gap: 2 }}>
           <NavLink to="/projects">Projects</NavLink>
@@ -38,34 +38,52 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexGrow: 1, justifyContent: 'center' }}>
           <InputBase
-            placeholder="Search..."
+            placeholder="Search by name or ID..."
             value={searchTerm}
             onChange={handleSearchChange}
             sx={{
               bgcolor: 'white',
               borderRadius: 1,
               px: 1,
-              width: 300,
+              width: '450px',
               border: '2px solid #1bc0ad',
               '&:focus': { borderColor: '#188f87' },
             }}
           />
 
-          <FormControl sx={{ minWidth: 200 }}>
+          <FormControl sx={{ minWidth: 150 }}>
             <Select
               displayEmpty
               value={status}
               onChange={handleStatusChange}
               sx={{ bgcolor: 'white', borderRadius: 1 }}
-              inputProps={{ 'aria-label': 'Filter projects by status' }} // Accessibility improvement
             >
               <MenuItem value="">
-                <em>Filter projects by status</em> {/* Default placeholder text */}
+                <em>Filter projects by status</em>
               </MenuItem>
               <MenuItem value="In Progress">In Progress</MenuItem>
               <MenuItem value="Completed">Completed</MenuItem>
               <MenuItem value="At Risk">At Risk</MenuItem>
               <MenuItem value="All">All</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ minWidth: 150 }}>
+            <Select
+              displayEmpty
+              value={sortOption}
+              onChange={handleSortChange}
+              sx={{ bgcolor: 'white', borderRadius: 1 }}
+            >
+              <MenuItem value="">
+                <em>Sort projects by</em>
+              </MenuItem>
+              <MenuItem value="nameAsc">Name (A-Z)</MenuItem>
+              <MenuItem value="nameDesc">Name (Z-A)</MenuItem>
+              <MenuItem value="profitHigh">Profit (High to Low)</MenuItem>
+              <MenuItem value="profitLow">Profit (Low to High)</MenuItem>
+              <MenuItem value="costHigh">Cost (High to Low)</MenuItem>
+              <MenuItem value="costLow">Cost (Low to High)</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -75,6 +93,13 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
 };
 
 export default NavBar;
+
+
+
+
+
+
+
 
 
 

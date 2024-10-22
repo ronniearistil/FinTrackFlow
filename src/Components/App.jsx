@@ -8,16 +8,15 @@ import ExpensesContainer from './ExpensesContainer.jsx';
 import ProjectForm from './ProjectForm.jsx';
 import ExpenseForm from './ExpenseForm.jsx';
 import Footer from './Footer.jsx';
+import AboutUs from './AboutUs.jsx'; 
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import theme from '../theme'; // Custom theme
+import theme from '../theme';
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState(''); // State for search term
-  const [statusFilter, setStatusFilter] = useState(''); // State for status filter
-
-  const handleSearch = (term) => setSearchTerm(term); // Update search term
-  const handleStatusFilter = (status) => setStatusFilter(status); // Update status filter
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [sortOption, setSortOption] = useState('');
 
   return (
     <ThemeProvider theme={theme}>
@@ -25,24 +24,24 @@ const App = () => {
       <ProjectProvider>
         <div className="App">
           <Header />
-          <NavBar onSearch={handleSearch} onStatusFilter={handleStatusFilter} />
+          <NavBar
+            onSearch={(term) => setSearchTerm(term)}
+            onStatusFilter={(status) => setStatusFilter(status)}
+            onSort={(option) => setSortOption(option)} // Pass sort option to ProjectsContainer
+          />
           <Routes>
             <Route path="/" element={<Navigate to="/projects" />} />
-            <Route 
-              path="/projects" 
-              element={
-                <ProjectsContainer 
-                  searchTerm={searchTerm} 
-                  statusFilter={statusFilter} 
-                />
-              } 
+            <Route path="/projects" element={
+              <ProjectsContainer 
+                searchTerm={searchTerm} 
+                statusFilter={statusFilter} 
+                sortOption={sortOption} 
+              />} 
             />
             <Route path="/projects/new" element={<ProjectForm />} />
-            <Route 
-              path="/expenses" 
-              element={<ExpensesContainer searchTerm={searchTerm} />} 
-            />
+            <Route path="/expenses" element={<ExpensesContainer searchTerm={searchTerm} />} />
             <Route path="/expenses/new" element={<ExpenseForm />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="*" element={<h2>Page Not Found</h2>} />
           </Routes>
           <Footer />
@@ -53,6 +52,9 @@ const App = () => {
 };
 
 export default App;
+
+
+
 
 
 

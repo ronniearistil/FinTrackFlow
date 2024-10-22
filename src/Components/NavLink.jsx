@@ -1,10 +1,11 @@
+// src/Components/NavLink.jsx
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom'; // Use React Router's Link
+import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '@mui/material';
 
 const NavLink = ({ to, children }) => (
   <Link
-    component={RouterLink} // Use RouterLink for navigation
+    component={RouterLink}
     to={to}
     underline="none"
     sx={{

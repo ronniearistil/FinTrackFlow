@@ -1,42 +1,67 @@
+// src/Components/ProjectsContainer.jsx
 import React, { useEffect, useState } from 'react';
 import { useProjects } from './ProjectContext';
 import ProjectCard from './ProjectCard';
 
-const ProjectsContainer = ({ searchTerm, statusFilter }) => {
-  const { projects, archiveProject } = useProjects(); // Use archive function from context
+const ProjectsContainer = ({ searchTerm, statusFilter, sortOption }) => {
+  const { projects, archiveProject } = useProjects();
   const [filteredProjects, setFilteredProjects] = useState([]);
 
-  const handleEdit = (project) => {
-    console.log('Editing project:', project); // Replace with your edit logic
-  };
-
   useEffect(() => {
-    const filtered = projects.filter((project) => {
-      const matchesSearch = project.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const lowerCasedSearchTerm = searchTerm.toLowerCase();
+
+    // Filter projects based on search term and status filter
+    let filtered = projects.filter((project) => {
+      const matchesSearch =
+        project.name.toLowerCase().includes(lowerCasedSearchTerm) ||
+        project.id.includes(searchTerm); // Search by name or ID
+
       const matchesStatus =
         statusFilter === 'All' || statusFilter === '' || project.status === statusFilter;
 
       return matchesSearch && matchesStatus;
     });
 
+    // Apply sorting based on the selected sort option
+    if (sortOption) {
+      filtered = filtered.sort((a, b) => {
+        switch (sortOption) {
+          case 'nameAsc':
+            return a.name.localeCompare(b.name);
+          case 'nameDesc':
+            return b.name.localeCompare(a.name);
+          case 'profitHigh':
+            return b.profit - a.profit;
+          case 'profitLow':
+            return a.profit - b.profit;
+          case 'costHigh':
+            return b.cost - a.cost;
+          case 'costLow':
+            return a.cost - b.cost;
+          default:
+            return 0;
+        }
+      });
+    }
+
     setFilteredProjects(filtered);
-  }, [projects, searchTerm, statusFilter]);
+  }, [projects, searchTerm, statusFilter, sortOption]);
 
   return (
     <div className="dashboard">
       {filteredProjects.map((project) => (
-        <ProjectCard
-          key={project.id}
-          project={project}
-          onEdit={handleEdit} // Pass the onEdit function
-          onArchive={archiveProject} // Pass the onArchive function
-        />
+        <ProjectCard key={project.id} project={project} onArchive={archiveProject} />
       ))}
     </div>
   );
 };
 
 export default ProjectsContainer;
+
+
+
+
+
 
 
 
