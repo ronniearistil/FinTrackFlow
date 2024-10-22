@@ -8,10 +8,10 @@ import ExpensesContainer from './ExpensesContainer.jsx';
 import ProjectForm from './ProjectForm.jsx';
 import ExpenseForm from './ExpenseForm.jsx';
 import Footer from './Footer.jsx';
-import AboutUs from './AboutUs.jsx'; // Import AboutUs component
+import AboutUs from './AboutUs.jsx'; 
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import theme from '../theme'; // Custom theme
+import theme from '../theme';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,18 +22,23 @@ const App = () => {
       <CssBaseline />
       <ProjectProvider>
         <div className="App">
-          <Header /> {/* Header with the clickable H1 */}
+          <Header /> 
           <NavBar
             onSearch={(term) => setSearchTerm(term)}
             onStatusFilter={(status) => setStatusFilter(status)}
           />
           <Routes>
             <Route path="/" element={<Navigate to="/projects" />} />
-            <Route path="/projects" element={<ProjectsContainer searchTerm={searchTerm} statusFilter={statusFilter} />} />
+            <Route path="/projects" element={
+              <ProjectsContainer 
+                searchTerm={searchTerm} 
+                statusFilter={statusFilter} 
+              />} 
+            />
             <Route path="/projects/new" element={<ProjectForm />} />
             <Route path="/expenses" element={<ExpensesContainer searchTerm={searchTerm} />} />
             <Route path="/expenses/new" element={<ExpenseForm />} />
-            <Route path="/about" element={<AboutUs />} /> {/* About Us route */}
+            <Route path="/about" element={<AboutUs />} />
             <Route path="*" element={<h2>Page Not Found</h2>} />
           </Routes>
           <Footer />

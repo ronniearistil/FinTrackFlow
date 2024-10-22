@@ -1,7 +1,7 @@
 // src/Components/NavBar.jsx
 import React, { useState } from 'react';
 import { AppBar, Toolbar, InputBase, Box, MenuItem, Select, FormControl } from '@mui/material';
-import NavLink from './NavLink'; // Import reusable NavLink component
+import NavLink from './NavLink'; 
 
 const NavBar = ({ onSearch, onStatusFilter }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -29,7 +29,7 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
               bgcolor: 'white',
               borderRadius: 1,
               px: 1,
-              width: '450px', // Make the search bar 50% longer
+              width: '450px',
               border: '2px solid #1bc0ad',
               '&:focus': { borderColor: '#188f87' },
             }}
@@ -58,6 +58,7 @@ const NavBar = ({ onSearch, onStatusFilter }) => {
 };
 
 export default NavBar;
+
 
 
 
