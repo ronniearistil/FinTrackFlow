@@ -5,12 +5,12 @@ import ProjectCard from './ProjectCard';
 
 const ProjectsContainer = ({ searchTerm, statusFilter }) => {
   const { projects, archiveProject } = useProjects();
-  const [filteredProjects, setFilteredProjects] = useState([]);
+  // const [filteredProjects, setFilteredProjects] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
     const lowerCasedSearchTerm = searchTerm.toLowerCase();
 
-    const filtered = projects.filter((project) => {
+    const filteredProjects = projects.filter((project) => {
       const matchesSearch =
         project.name.toLowerCase().includes(lowerCasedSearchTerm) ||
         project.id.includes(searchTerm); // Search by ID
@@ -21,8 +21,8 @@ const ProjectsContainer = ({ searchTerm, statusFilter }) => {
       return matchesSearch && matchesStatus;
     });
 
-    setFilteredProjects(filtered);
-  }, [projects, searchTerm, statusFilter]);
+  //   setFilteredProjects(filtered);
+  // }, [projects, searchTerm, statusFilter]);
 
   return (
     <div className="dashboard">

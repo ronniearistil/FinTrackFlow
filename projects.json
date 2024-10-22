@@ -111,6 +111,13 @@
       "profit": "3500",
       "cost": 2000,
       "status": "Archived"
+    },
+    {
+      "id": "17aa",
+      "name": "Project XYZ",
+      "profit": 1000,
+      "cost": 500,
+      "status": "Archived"
     }
   ],
   "expenses": [
@@ -262,6 +269,13 @@
       "name": "New Material 2",
       "amount": "2500",
       "projectId": "1729570850776"
+    },
+    {
+      "id": "1729613595000",
+      "name": "YXZ",
+      "amount": "3000",
+      "projectId": "17aa",
+      "archived": true
     }
   ]
 }

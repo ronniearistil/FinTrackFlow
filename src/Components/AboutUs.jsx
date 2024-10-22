@@ -1,6 +1,6 @@
 // src/Components/AboutUs.jsx
 import React from 'react';
-import { Box, Typography, Container } from '@mui/material';
+import { Typography, Container } from '@mui/material';
 
 const AboutUs = () => (
   <Container maxWidth="md" sx={{ padding: '2rem 0', textAlign: 'center' }}>
