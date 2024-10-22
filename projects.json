@@ -117,7 +117,7 @@
       "name": "Project XYZ",
       "profit": 1000,
       "cost": 500,
-      "status": "Archived"
+      "status": "Active"
     },
     {
       "id": "62ba",
@@ -221,7 +221,7 @@
       "name": "Test",
       "amount": "60",
       "projectId": "1729539406619",
-      "archived": false
+      "archived": true
     },
     {
       "id": "9d43",
@@ -284,7 +284,7 @@
       "name": "YXZ",
       "amount": "3000",
       "projectId": "17aa",
-      "archived": false
+      "archived": true
     }
   ]
 }
