@@ -21,28 +21,14 @@ const ProjectForm = () => {
 
   const formik = useFormik({
     initialValues,
-    //  {
-    //   name: '',
-    //   profit: '',
-    //   cost: '',
-    //   status: 'New', //fault 'New'
-    // },
+    
     validationSchema, 
-    // Yup.object({
-    //   name: Yup.string().min(3, 'Must be at least 3 characters').required('Required'),
-    //   profit: Yup.number().positive('Must be greater than zero').required('Required'),
-    //   cost: Yup.number().positive('Must be greater than zero').required('Required'),
-    //   status: Yup.string().required('Required'),
-    // }),
+
     onSubmit: (values, { resetForm }) => {
       addProject(values);
       resetForm();
-      // addProject({ ...values, id: Date.now().toString() });
-      // resetForm();
     },
   });
-
-  // addProject({ ...values, id: Date.now().toString() });
 
   return (
     <Box component="form" onSubmit={formik.handleSubmit}>
