@@ -23,7 +23,7 @@ const NavBar = ({ onSearch, onStatusFilter, onSort }) => {
   const handleSortChange = (e) => {
     const value = e.target.value;
     setSortOption(value);
-    onSort(value); // Pass sort option to parent component
+    onSort(value);
   };
 
   return (
@@ -93,6 +93,7 @@ const NavBar = ({ onSearch, onStatusFilter, onSort }) => {
 };
 
 export default NavBar;
+
 
 
 

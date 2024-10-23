@@ -1,13 +1,13 @@
-// src/Components/ExpenseForm.jsx
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 import { Button, Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { ProjectContext } from './ProjectContext'; // Access project data
-import InputField from './InputField'; // Reusable input field
+import { ProjectContext } from './ProjectContext';
+import InputField from './InputField';
 
 const ExpenseForm = () => {
-  const { addExpense, projects } = useContext(ProjectContext); // Access context
+  const { addExpense, projects } = useContext(ProjectContext);
 
   const formik = useFormik({
     initialValues: {
@@ -20,9 +20,14 @@ const ExpenseForm = () => {
       amount: Yup.number().positive('Must be greater than zero').required('Required'),
       projectId: Yup.string().required('Project is required'),
     }),
-    onSubmit: (values, { resetForm }) => {
-      addExpense({ ...values, id: Date.now().toString() }); // Add new expense
-      resetForm();
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        await addExpense({ ...values, id: Date.now().toString() });
+        toast.success('Expense added successfully!');
+        resetForm();
+      } catch (error) {
+        toast.error('Failed to add expense. Please try again.');
+      }
     },
   });
 
@@ -31,7 +36,6 @@ const ExpenseForm = () => {
       <InputField formik={formik} name="name" label="Expense Name" />
       <InputField formik={formik} name="amount" label="Amount" type="number" />
 
-      {/* Project Selector */}
       <FormControl fullWidth margin="normal">
         <InputLabel id="project-select-label">Project</InputLabel>
         <Select
@@ -43,7 +47,7 @@ const ExpenseForm = () => {
           error={formik.touched.projectId && Boolean(formik.errors.projectId)}
         >
           <MenuItem value="">
-            <em>Select Project</em> {/* Default placeholder */}
+            <em>Select Project</em>
           </MenuItem>
           {projects.map((project) => (
             <MenuItem key={project.id} value={project.id}>
@@ -64,6 +68,7 @@ const ExpenseForm = () => {
 };
 
 export default ExpenseForm;
+
 
 
 
