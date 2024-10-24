@@ -19,7 +19,7 @@
       "name": "Project Gamma",
       "profit": 8000,
       "cost": 4000,
-      "status": "At Risk"
+      "status": "Active"
     },
     {
       "id": "4",
@@ -124,7 +124,14 @@
       "name": "Mega Project 5",
       "profit": 500000,
       "cost": 250000,
-      "status": "New"
+      "status": "Active"
+    },
+    {
+      "id": "f97e",
+      "name": "New Line of xyz",
+      "profit": 25000,
+      "cost": 20000,
+      "status": "Active"
     }
   ],
   "expenses": [
@@ -284,6 +291,13 @@
       "name": "YXZ",
       "amount": "3000",
       "projectId": "17aa",
+      "archived": true
+    },
+    {
+      "id": "1729699203446",
+      "name": "Special Material ",
+      "amount": 2500,
+      "projectId": "62ba",
       "archived": true
     }
   ]

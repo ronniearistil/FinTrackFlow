@@ -38,7 +38,7 @@ FinTrackFlow is a React-based project management tool designed to empower users 
 
 ## Available Scripts  
 
-1. **Start the Development Server**  
+**Start the Development Server**  
 npm start
 Runs the React app in development mode.
 Open http://localhost:3000 to view the app.
