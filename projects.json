@@ -89,7 +89,7 @@
       "name": "Test Project",
       "profit": "100",
       "cost": "150",
-      "status": "Active"
+      "status": "Archived"
     },
     {
       "id": "1729543984093",
@@ -132,6 +132,20 @@
       "profit": 25000,
       "cost": "25000",
       "status": "Archived"
+    },
+    {
+      "id": "e690",
+      "name": "Mega Project 2",
+      "profit": 25000,
+      "cost": 15000,
+      "status": "New"
+    },
+    {
+      "id": "edf6",
+      "name": "New Material ",
+      "profit": 2500,
+      "cost": 200,
+      "status": "New"
     }
   ],
   "expenses": [
@@ -158,7 +172,8 @@
       "id": "4",
       "name": "Consulting Fees",
       "amount": 900,
-      "projectId": 3
+      "projectId": 3,
+      "archived": true
     },
     {
       "id": "5",
@@ -284,7 +299,7 @@
       "name": "New Material 2",
       "amount": "2500",
       "projectId": "1729570850776",
-      "archived": false
+      "archived": true
     },
     {
       "id": "1729613595000",
@@ -298,6 +313,13 @@
       "name": "Special Material ",
       "amount": 2500,
       "projectId": "62ba",
+      "archived": true
+    },
+    {
+      "id": "1729749391034",
+      "name": "Test",
+      "amount": 1,
+      "projectId": "3",
       "archived": true
     }
   ]

@@ -1,4 +1,3 @@
-// src/Components/NavBar.jsx
 import React, { useState } from 'react';
 import { AppBar, Toolbar, InputBase, Box, MenuItem, Select, FormControl } from '@mui/material';
 import NavLink from './NavLink';
@@ -93,6 +92,7 @@ const NavBar = ({ onSearch, onStatusFilter, onSort }) => {
 };
 
 export default NavBar;
+
 
 
 

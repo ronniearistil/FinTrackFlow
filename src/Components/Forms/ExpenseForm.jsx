@@ -35,7 +35,6 @@ const ExpenseForm = () => {
     <Box component="form" onSubmit={formik.handleSubmit} sx={{ maxWidth: 600, mx: 'auto' }}>
       <InputField formik={formik} name="name" label="Expense Name" />
       <InputField formik={formik} name="amount" label="Amount" type="number" />
-
       <FormControl fullWidth margin="normal">
         <InputLabel id="project-select-label">Project</InputLabel>
         <Select
@@ -59,7 +58,6 @@ const ExpenseForm = () => {
           <div style={{ color: 'red' }}>{formik.errors.projectId}</div>
         )}
       </FormControl>
-
       <Button type="submit" variant="contained" sx={{ mt: 2 }}>
         Add Expense
       </Button>
@@ -68,6 +66,7 @@ const ExpenseForm = () => {
 };
 
 export default ExpenseForm;
+
 
 
 
