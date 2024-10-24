@@ -33,7 +33,7 @@
       "name": "Project Epsilon",
       "profit": 20000,
       "cost": 9000,
-      "status": "Completed"
+      "status": "Active"
     },
     {
       "id": "6",
@@ -130,8 +130,8 @@
       "id": "f97e",
       "name": "New Line of xyz",
       "profit": 25000,
-      "cost": 20000,
-      "status": "Active"
+      "cost": "25000",
+      "status": "Archived"
     }
   ],
   "expenses": [
@@ -201,7 +201,7 @@
       "name": "Software Licensing",
       "amount": 2600,
       "projectId": 10,
-      "archived": true
+      "archived": false
     },
     {
       "id": "f37b",

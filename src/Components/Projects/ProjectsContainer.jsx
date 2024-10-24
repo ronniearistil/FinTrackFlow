@@ -1,6 +1,6 @@
 // src/Components/ProjectsContainer.jsx
 import React, { useEffect, useState } from 'react';
-import { useProjects } from './ProjectContext';
+import { useProjects } from '../../ProjectContext';
 import ProjectCard from './ProjectCard';
 
 const ProjectsContainer = ({ searchTerm, statusFilter, sortOption }) => {

@@ -3,13 +3,15 @@
 import React, { useState } from 'react';
 import { IconButton, Menu, MenuItem, TextField, Button, Dialog } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useProjects } from './ProjectContext';
+import { useProjects } from '../../ProjectContext';
 
 const ProjectCard = ({ project }) => {
   const { editProject, archiveProject } = useProjects();
   const [anchorEl, setAnchorEl] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [updatedProject, setUpdatedProject] = useState(project);
+
+  //const {deleteProject} = useContext(ProjectContext)
 
   const open = Boolean(anchorEl);
 

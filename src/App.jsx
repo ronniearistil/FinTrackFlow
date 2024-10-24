@@ -1,17 +1,17 @@
 // src/App.jsx
 import React, { useState } from 'react';
 import { ProjectProvider } from './ProjectContext.jsx';
-import Header from './Header.jsx';
-import NavBar from './NavBar.jsx';
-import ProjectsContainer from './ProjectsContainer.jsx';
-import ExpensesContainer from './ExpensesContainer.jsx';
-import ProjectForm from './ProjectForm.jsx';
-import ExpenseForm from './ExpenseForm.jsx';
-import Footer from './Footer.jsx';
-import AboutUs from './AboutUs.jsx';
+import Header from './Components/Layout/Header.jsx';
+import NavBar from './Components/Layout/NavBar.jsx';
+import ProjectsContainer from './Components/Projects/ProjectsContainer.jsx';
+import ExpensesContainer from './Components/Expenses/ExpensesContainer.jsx';
+import ProjectForm from './Components/Forms/ProjectForm.jsx';
+import ExpenseForm from './Components/Forms/ExpenseForm.jsx';
+import Footer from './Components/Layout/Footer.jsx';
+import AboutUs from './Components/AboutUs.jsx';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import theme from '../theme';
+import theme from './theme.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

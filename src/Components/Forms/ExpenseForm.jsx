@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { Button, Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { ProjectContext } from './ProjectContext';
+import { ProjectContext } from '../../ProjectContext';
 import InputField from './InputField';
 
 const ExpenseForm = () => {
