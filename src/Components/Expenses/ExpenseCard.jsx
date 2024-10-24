@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { IconButton, Menu, MenuItem, Dialog, TextField, Button } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useProjects } from './ProjectContext';
+import { useProjects } from '../../ProjectContext';
 
 const ExpenseCard = ({ expense }) => {
   const { editExpense, archiveExpense } = useProjects();

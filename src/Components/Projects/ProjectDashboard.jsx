@@ -1,6 +1,6 @@
 // src/Components/ProjectDashboard.jsx
 import React, { useState, useEffect } from 'react';
-import { useProjects } from './ProjectContext';
+import { useProjects } from '../../ProjectContext';
 import ProjectCard from './ProjectCard';
 
 const ProjectDashboard = ({ statusFilter }) => {
