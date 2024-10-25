@@ -62,8 +62,8 @@ Ensure the JSON Server is running for the React app to access the project and ex
 
 # Project Setup
 1. Clone the Repository
-    git clone git@github.com:ronniearistil/ProjFlow.git
-    cd ProjFlow
+    git clone git@github.com:ronniearistil/FinTrackFlow.git
+    cd FinTrackFlow
 
 2. Install Dependencies
     npm install
