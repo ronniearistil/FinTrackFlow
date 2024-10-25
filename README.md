@@ -1,7 +1,6 @@
 # FinTrackFlow  
-_A Seamless Project Forecasting, Budgeting, and Expense Management Hub_
 
-FinTrackFlow is a React-based project management tool designed to empower users with budget forecasting, project tracking, and expense management. With dynamic UI elements, archiving capabilities, and search, filter, and sorting options, the application offers streamlined workflows. Using React Context for state management and JSON Server for a mock backend, FinTrackFlow ensures a smooth development experience.
+FinTrackFlow is a real-time, interactive tool that empowers users to forecast project expenses, manage project budgets, and track profitability, offering powerful analytics and multi-project financial oversight for businesses and individuals alike.
 
 ---
 
