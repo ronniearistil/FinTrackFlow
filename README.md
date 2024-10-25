@@ -48,7 +48,7 @@ Open http://localhost:3000 to view it in your browser.
     npm run server
 
 Runs the mock backend using JSON Server.
-Open http://localhost:5000/projects to view the project data.
+Open (http://localhost:5001/projects | http://localhost:5001/expenses) to view the project and expense data.
 
 Ensure the JSON Server is running for the React app to access the project and expense data.
 
