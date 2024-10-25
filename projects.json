@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Project Alpha",
       "profit": "15000",
-      "cost": "6500",
+      "cost": "7500",
       "status": "Active"
     },
     {
@@ -47,7 +47,7 @@
       "name": "Project Eta",
       "profit": 25000,
       "cost": 10000,
-      "status": "Completed"
+      "status": "Active"
     },
     {
       "id": "8",
@@ -89,7 +89,7 @@
       "name": "Test Project",
       "profit": "100",
       "cost": "150",
-      "status": "Archived"
+      "status": "Active"
     },
     {
       "id": "1729543984093",
@@ -124,7 +124,7 @@
       "name": "Mega Project 5",
       "profit": 500000,
       "cost": 250000,
-      "status": "Active"
+      "status": "Archived"
     },
     {
       "id": "f97e",
@@ -145,6 +145,34 @@
       "name": "New Material ",
       "profit": 2500,
       "cost": 200,
+      "status": "Active"
+    },
+    {
+      "id": "5a79",
+      "name": "Python Project ",
+      "profit": 25000,
+      "cost": "2000",
+      "status": "New"
+    },
+    {
+      "id": "1afc",
+      "name": "New Material ",
+      "profit": 2500,
+      "cost": 1000,
+      "status": "New"
+    },
+    {
+      "id": "6e80",
+      "name": "Mega Project 22",
+      "profit": 25000,
+      "cost": 15000,
+      "status": "Active"
+    },
+    {
+      "id": "8985",
+      "name": "YXZ",
+      "profit": 2500,
+      "cost": 1500,
       "status": "New"
     }
   ],
@@ -152,33 +180,35 @@
     {
       "id": "1",
       "name": "Design Costs",
-      "amount": "1500",
+      "amount": "1600",
       "projectId": 1,
-      "archived": false
+      "archived": true
     },
     {
       "id": "2",
       "name": "Marketing",
       "amount": 2400,
-      "projectId": 1
+      "projectId": 1,
+      "archived": false
     },
     {
       "id": "3",
       "name": "Tech Tools",
-      "amount": 1600,
-      "projectId": 2
+      "amount": "1700",
+      "projectId": 2,
+      "archived": true
     },
     {
       "id": "4",
       "name": "Consulting Fees",
       "amount": 900,
       "projectId": 3,
-      "archived": true
+      "archived": false
     },
     {
       "id": "5",
       "name": "Legal Services",
-      "amount": 2200,
+      "amount": "2500",
       "projectId": 4
     },
     {
@@ -243,7 +273,7 @@
       "name": "Test",
       "amount": "60",
       "projectId": "1729539406619",
-      "archived": true
+      "archived": false
     },
     {
       "id": "9d43",
@@ -313,7 +343,7 @@
       "name": "Special Material ",
       "amount": 2500,
       "projectId": "62ba",
-      "archived": true
+      "archived": false
     },
     {
       "id": "1729749391034",
@@ -321,6 +351,24 @@
       "amount": 1,
       "projectId": "3",
       "archived": true
+    },
+    {
+      "id": "1729797590339",
+      "name": "New Material 2",
+      "amount": 5000,
+      "projectId": "4"
+    },
+    {
+      "id": "1729801875080",
+      "name": "New Laptops ",
+      "amount": 2500,
+      "projectId": "5a79"
+    },
+    {
+      "id": "1729807727857",
+      "name": "Python Expense ",
+      "amount": 2500,
+      "projectId": "6e80"
     }
   ]
 }

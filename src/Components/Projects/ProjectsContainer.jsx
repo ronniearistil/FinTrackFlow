@@ -1,25 +1,32 @@
-// src/Components/ProjectsContainer.jsx
 import React, { useEffect, useState } from 'react';
 import { useProjects } from '../../ProjectContext';
 import ProjectCard from './ProjectCard';
+import { Button } from '@mui/material';
 
 const ProjectsContainer = ({ searchTerm, statusFilter, sortOption }) => {
-  const { projects, archiveProject } = useProjects();
+  const { projects } = useProjects();
   const [filteredProjects, setFilteredProjects] = useState([]);
+  const [showArchived, setShowArchived] = useState(false);
+
+  const toggleArchived = () => setShowArchived((prev) => !prev);
 
   useEffect(() => {
     const lowerCasedSearchTerm = searchTerm.toLowerCase();
 
-    // Filter projects based on search term and status filter
+    // Filter projects based on search term and status
     let filtered = projects.filter((project) => {
       const matchesSearch =
         project.name.toLowerCase().includes(lowerCasedSearchTerm) ||
-        project.id.includes(searchTerm); // Search by name or ID
+        project.id.includes(searchTerm);
 
       const matchesStatus =
         statusFilter === 'All' || statusFilter === '' || project.status === statusFilter;
 
-      return matchesSearch && matchesStatus;
+      const matchesArchiveStatus = showArchived
+        ? project.status === 'Archived'
+        : project.status !== 'Archived';
+
+      return matchesSearch && matchesStatus && matchesArchiveStatus;
     });
 
     // Apply sorting based on the selected sort option
@@ -45,18 +52,29 @@ const ProjectsContainer = ({ searchTerm, statusFilter, sortOption }) => {
     }
 
     setFilteredProjects(filtered);
-  }, [projects, searchTerm, statusFilter, sortOption]);
+  }, [projects, searchTerm, statusFilter, sortOption, showArchived]);
 
   return (
     <div className="dashboard">
+      <Button 
+        variant="outlined" 
+        onClick={toggleArchived} 
+        sx={{ mb: 2 }}
+      >
+        {showArchived ? 'Show Active' : 'Show Archived'}
+      </Button>
+
       {filteredProjects.map((project) => (
-        <ProjectCard key={project.id} project={project} onArchive={archiveProject} />
+        <ProjectCard key={project.id} project={project} />
       ))}
+
+      {filteredProjects.length === 0 && <p>No projects found.</p>}
     </div>
   );
 };
 
 export default ProjectsContainer;
+
 
 
 
