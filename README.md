@@ -1,7 +1,6 @@
 # FinTrackFlow  
-_A Seamless Project Forecasting, Budgeting, and Expense Management Hub_
 
-FinTrackFlow is a React-based project management tool designed to empower users with budget forecasting, project tracking, and expense management. With dynamic UI elements, archiving capabilities, and search, filter, and sorting options, the application offers streamlined workflows. Using React Context for state management and JSON Server for a mock backend, FinTrackFlow ensures a smooth development experience.
+FinTrackFlow is a real-time, interactive tool that empowers users to forecast project expenses, manage project budgets, and track profitability, offering powerful analytics and multi-project financial oversight for businesses and individuals alike.
 
 ---
 
@@ -48,7 +47,7 @@ Open http://localhost:3000 to view it in your browser.
     npm run server
 
 Runs the mock backend using JSON Server.
-Open http://localhost:5000/projects to view the project data.
+Open (http://localhost:5001/projects | http://localhost:5001/expenses) to view the project and expense data.
 
 Ensure the JSON Server is running for the React app to access the project and expense data.
 
@@ -62,8 +61,8 @@ Ensure the JSON Server is running for the React app to access the project and ex
 
 # Project Setup
 1. Clone the Repository
-    git clone git@github.com:ronniearistil/ProjFlow.git
-    cd ProjFlow
+    git clone git@github.com:ronniearistil/FinTrackFlow.git
+    cd FinTrackFlow
 
 2. Install Dependencies
     npm install
